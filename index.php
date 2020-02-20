@@ -7,7 +7,7 @@ $config = [
   "userBDD"     => "root",
   "passwordBDD" => "",
   "debug"       => true,
-  "path"        => "/BlogOC_P4",
+  "path"        => "/Blog_P4",
 ];
 
 // config Lionel
