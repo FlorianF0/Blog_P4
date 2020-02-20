@@ -30,16 +30,12 @@ class CommentaireModel extends Model
 
     }
 
-      // die(var_dump($safeData->post));
-
     if ($safeData->post['Envoyez_commentaire'] !== null) {
 
       if(isset($safeData->post['auteurCommentaire']) AND isset($safeData->post['messageCommentaire'])) {
         $this->createComment($safeData->post['auteurCommentaire'], $safeData->post['messageCommentaire'], $safeData->post['idChapitre']);
       } 
     }
-
-      // die(var_dump($safeData->post['idChapitre']));
 
     // récupére la liste des commentaires
     if (isset($argument["id"])) $this->getDataFromChapitreId($argument["id"]);
@@ -73,11 +69,11 @@ class CommentaireModel extends Model
   }
 
   private function createComment($auteurCommentaire, $contenuCommentaire, $idChapitre) {
-    $req = $this->bdd->prepare("INSERT INTO `commentaires` (auteurCommentaire, contenuCommentaire, datePublication, id_chapitre) VALUES (:auteurCommentaire, :contenuCommentaire, NOW(), :idChapitre)");
+    $sql = "INSERT INTO `commentaires` (auteurCommentaire, contenuCommentaire, datePublication, id_chapitre) VALUES (:auteurCommentaire, :contenuCommentaire, NOW(), :idChapitre)";
 
-    $req->execute(compact("auteurCommentaire", "contenuCommentaire", "idChapitre"));
+    // $req->execute(compact("auteurCommentaire", "contenuCommentaire", "idChapitre"));
 
-    // $this->prepare($sql, compact("auteurCommentaire", "contenuCommentaire", "idChapitre")); 
+    $this->prepare($sql, compact("auteurCommentaire", "contenuCommentaire", "idChapitre")); 
 
 
   }

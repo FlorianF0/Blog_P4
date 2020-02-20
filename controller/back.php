@@ -18,6 +18,8 @@ class Back extends Page
    */
   public function __construct($uri)
   {
+    global $safeData;
+
     if ($uri[1] === "") $this->afficheListeChapitreBack(0);
     if ($uri[1] === "accueil") $this->afficheListeChapitreBack(0);
     if ($uri[1] === "chapitre") $this->afficheChapitreBack($uri[2]);
@@ -63,7 +65,7 @@ class Back extends Page
   
   public function afficheNewChapitre()
   {
-    $monChapitre    = new Chapitre(0);
+    // $monNouveauChapitre    = new Chapitre("");
 
     $this->titre = "Ajouter un chapitre";
     $this->html  = file_get_contents("./templates/back/partialCreeChapitre.html");
@@ -72,7 +74,7 @@ class Back extends Page
   public function editeChapitre()
   {
     
-    $monChapitre    = new Chapitre();
+    $monNouveauChapitre    = new Chapitre();
     // $this->titre = "Ajouter un chapitre";
     // $this->html  = file_get_contents("./templates/partialCreeChapitre.html");
   }

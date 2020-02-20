@@ -26,15 +26,15 @@ class Chapitre
    */
   public function __construct($source)
   {
-    global $safeData;
-    
+    global $safeData;  
+
     if ($safeData->post !== null){
       if ($safeData->post["titre"] !== null){
         //on appelle le model en lui demandant de mettre à jour les données
         $model = new ChapitreModel([
           "update"=> [
             "titre"    => $safeData->post["titre"],
-            "contenue" => $safeData->post["contenue"],
+            "contenu" => $safeData->post["contenu"],
             "resume"   => $safeData->post["resume"],
           ]
         ]);
@@ -52,7 +52,7 @@ class Chapitre
 
   public function hydrate($donnees){
 
-    
+    if (!$donnees) return;
     if (!isset($donnees[0])) 
     {
       foreach ($donnees as $key => $value) {
@@ -104,7 +104,7 @@ class Chapitre
     // on apelle la vue, pour qu'elle remplace les mots dans partials par les donnees de la bdd que l'on a hydrater ds le constructeur
     return new View(
       [
-        "{{ id }}"       => $id,
+        // "{{ id }}"       => $id,
         "{{ titre }}"    => $this->titre,
         "{{ parution }}" => $parution,
         "{{ dateAjout }}"=> $date,
@@ -135,5 +135,7 @@ class Chapitre
       "partialFormConnexion"
       );
   }
+
+
 
 }

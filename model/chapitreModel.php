@@ -29,13 +29,12 @@ class ChapitreModel extends Model
 
     if($safeData->post['Ajouter_chapitre'] !== null) {
 
-      // die(var_dump($safeData->post['Ajouter_chapitre']));
+      // die(var_dump($safeData->post['titre']));
 
-      if(isset($safeData->post['titre']) AND $safeData->post['resume'] AND $safeData->post['slug'] AND $safeData->post['contenu']){
+      if(isset($safeData->post['titre']) AND isset($safeData->post['resume']) AND isset($safeData->post['slug']) AND isset($safeData->post['contenu'])){
         $this->createChapitre($safeData->post['titre'], $safeData->post['resume'], $safeData->post['slug'], $safeData->post['contenu']);
       }
     }
-    // die(var_dump($safeData->post['idChapitre']));
   }
 
 
@@ -61,10 +60,8 @@ class ChapitreModel extends Model
   }
 
   private function createChapitre($titre, $resume, $slug, $contenu) {
-    $req = $this->bdd->prepare("INSERT INTO `chapitre` (titre, auteur, resume, slug, contenu) VALUES (:titre, Jean, :resume, :slug, :contenu)");
+    $sql = "INSERT INTO `chapitre` (titre, auteur, resume, slug, contenu, dateAjout) VALUES (:titre, 'Jean', :resume, :slug, :contenu, NOW())";
 
-    $req->execute(compact("titre", "resume", "slug", "contenu"));
-
-
+    $this->prepare($sql,compact("titre", "resume", "slug", "contenu"));
   }
 }

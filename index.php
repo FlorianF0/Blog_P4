@@ -34,6 +34,7 @@ $safeData = new Security([
     "titre"               => FILTER_SANITIZE_STRING,
     "Ajouter_chapitre"    => FILTER_SANITIZE_STRING,
     "slug"                => FILTER_SANITIZE_STRING,
+    "id"                  => FILTER_SANITIZE_NUMBER_INT,
 
     "Envoyez_commentaire" => FILTER_SANITIZE_STRING,
     "Supprimer"           => FILTER_SANITIZE_STRING,

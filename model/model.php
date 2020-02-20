@@ -34,9 +34,9 @@ class Model
     else $this->donneesRead = $reponse->fetch();
   }
 
-  protected function prepare($sql){
+  protected function prepare($sql, $compact = null) {
     $req = $this->bdd->prepare($sql);
     
-    $req->execute();
+    $req->execute($compact);
   }
 }
