@@ -1,0 +1,37 @@
+
+
+section.new_chapitre h2{
+	text-align: center;
+	padding-top: 1rem;
+	font-size: 3rem;
+}
+
+section.new_chapitre a {
+	margin-left: 7rem;
+}
+
+section.form_newChapitre {
+	padding: 60px;
+}
+
+
+section.form_newChapitre .form-group {
+	margin-top: 10px;
+}
+
+section.form_newChapitre #resume {
+	height: 5rem;
+}
+
+section.form_newChapitre .control-label {
+	margin-bottom: 0.3rem; 
+}
+
+section.form_newChapitre #contenue {
+	margin-top: 4rem;
+	height: 20rem;
+}
+
+section.form_newChapitre  .btn-primary {
+	margin-top: 2rem;	
+}

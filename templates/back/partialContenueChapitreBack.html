@@ -1,0 +1,19 @@
+	
+		<span class="image main"><img src="{{ path }}/images/pic04.jpg" alt="" /></span>
+
+	<section class="contenu_article">
+		<form action="" method="POST">
+			<p> 
+		        <input type="hidden" name="id " value="{{ id }}">
+				<input type="submit" name="Editer_chapitre"    value="Editer">
+				<input type="submit" name="Supprimer_chapitre" value="Supprimer">
+			</p>
+		</form>
+
+		<p><a href="{{ path }}/admin/">Retour à la liste des chapitres</a></p> 
+		<p> Par {{ auteur }}, {{ parution }}  le {{ dateAjout }}</p>
+		
+		<div class="text_chapitre">
+			<p>{{ contenu }}</p>
+		</div>
+	</section>

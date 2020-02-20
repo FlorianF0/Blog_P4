@@ -1,0 +1,15 @@
+<div class="media">
+   <div class="media-body">
+      <form action="" method="POST">
+        <input type="hidden" name="idCommentaire" value="{{ id }}">
+        <input type="hidden" name="etatCommentaire" value="{{ etat }}">
+        <input type="hidden" name="idChapitre " value="{{ idChapitre }}">
+        <h4 class="media-heading">{{ auteurCommentaire }}</h4>
+        <p>{{ contenuCommentaire }}</p>
+        <ul class="list-unstyled list-inline media-detail pull-left">
+            <li><i class="fa fa-calendar"></i>{{ datePublication }}</li>
+        </ul>
+            {{ buttons }}
+      </form>
+    </div>
+</div>

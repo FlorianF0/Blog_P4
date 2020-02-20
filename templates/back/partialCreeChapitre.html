@@ -1,0 +1,27 @@
+
+<div id="main">
+    <section class = "new_chapitre">
+
+        <h2>Ajouter un chapitre</h2>
+
+        <a href="{{ path }}/admin/">Retour à la liste des chapitres</a>
+
+        <section class="form_newChapitre">
+            <form action="#">
+                <div class="form-group">
+                    <label for="titre" class="control-label">Titre</label>
+                    <input type="text" class="form-control" id="titre" placeholder="Titre">
+                </div>
+                <div class="form-group">
+                    <label for="resume" class="control-label">Résumé</label>
+                    <textarea class="form-control" maxlength="255" id="resume" placeholder="Résumé (max : 255 carac)"></textarea> 
+                </div>
+                <div class="form-group">
+                    <label for="contenue" class="control-label"></label>
+                    <textarea class="form-control" id="contenue" placeholder=""></textarea> 
+                </div>
+                <button type="submit" class="btn btn-primary">Publié</button>
+            </form>
+        </section>
+    </section>
+</div>

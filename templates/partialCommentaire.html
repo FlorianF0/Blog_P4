@@ -1,0 +1,25 @@
+<section class="content-item" id="comments">
+    <div class="container">         
+    	<div class="row">
+            <div class="col-sm-8">   
+                <form method="POST">
+                	<h3 class="pull-left">Ecrivez un commentaire</h3>
+                	<input type="submit" name="Envoyez_commentaire" value="Envoyez" >
+                    <fieldset>
+                        <div class="row">
+                            <div class="form-group col-xs-12 col-sm-9 col-lg-10">
+                                <input type="hidden" name="idChapitre" value="{{ idChapitre }}">
+                                <input type="text" class="form-control" id="auteurCommentaire" name="auteurCommentaire"  placeholder="Votre pseudo"/> 
+                                <textarea class="form-control" id="messageCommentaire" name="messageCommentaire"  placeholder="Votre message" required=""></textarea>
+
+                            </div>
+                        </div>  	
+                    </fieldset>
+                </form>
+                
+                <h3>Commentaires</h3>
+                {{ partialListeCommentaire }}
+            </div>
+        </div>
+    </div>
+</section>	
