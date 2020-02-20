@@ -53,7 +53,9 @@ class Commentaire
     foreach ($this->data as $key => $value) {
       $this->data[$key]["{{ idChapitre }}"]  = $this->idChapitre;
 
-      if($value["etat"] === "0")  continue;
+      if($value["etat"] === "0")  {
+        $this->data[$key]["{{ buttons }}"]  = "";
+      }  
       if($value["etat"] === "1") {
         $this->data[$key]["{{ buttons }}"]  = $this->bouttonFormulaire("Signaler");
       }
@@ -109,7 +111,7 @@ class Commentaire
     return new View(
       [
         "{{ partialListeCommentaire }}"  => $partialListeCommentaire,
-        // "{{ idChapitre }}"               => $idChapitre
+        "{{ idChapitre }}"               => $this->idChapitre
       ],
       "partialCommentaire"
     );

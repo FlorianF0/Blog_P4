@@ -27,6 +27,14 @@ class ChapitreModel extends Model
       }
     }
 
+    if($safeData->post['Ajouter_chapitre'] !== null) {
+
+      // die(var_dump($safeData->post['Ajouter_chapitre']));
+
+      if(isset($safeData->post['titre']) AND $safeData->post['resume'] AND $safeData->post['slug'] AND $safeData->post['contenu']){
+        $this->createChapitre($safeData->post['titre'], $safeData->post['resume'], $safeData->post['slug'], $safeData->post['contenu']);
+      }
+    }
     // die(var_dump($safeData->post['idChapitre']));
   }
 
@@ -50,5 +58,13 @@ class ChapitreModel extends Model
   private function deleteChapitre($id){
     $sql = "DELETE FROM `chapitre` WHERE id = '$id'";
     $this->prepare($sql);
+  }
+
+  private function createChapitre($titre, $resume, $slug, $contenu) {
+    $req = $this->bdd->prepare("INSERT INTO `chapitre` (titre, auteur, resume, slug, contenu) VALUES (:titre, Jean, :resume, :slug, :contenu)");
+
+    $req->execute(compact("titre", "resume", "slug", "contenu"));
+
+
   }
 }

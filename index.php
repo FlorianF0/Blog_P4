@@ -29,9 +29,11 @@ if ($config["debug"]){
 $safeData = new Security([
   "uri" => $config["path"],
   "post" =>[
-    "contenue"            => FILTER_SANITIZE_STRING,
+    "contenu"             => FILTER_SANITIZE_STRING,
     "resume"              => FILTER_SANITIZE_STRING,
     "titre"               => FILTER_SANITIZE_STRING,
+    "Ajouter_chapitre"    => FILTER_SANITIZE_STRING,
+    "slug"                => FILTER_SANITIZE_STRING,
 
     "Envoyez_commentaire" => FILTER_SANITIZE_STRING,
     "Supprimer"           => FILTER_SANITIZE_STRING,
@@ -46,6 +48,8 @@ $safeData = new Security([
     "Editer_chapitre"     => FILTER_SANITIZE_STRING,
     "Supprimer_chapitre"  => FILTER_SANITIZE_STRING,
     "slug"                => FILTER_SANITIZE_STRING,
+
+
 
   ]
 ]);

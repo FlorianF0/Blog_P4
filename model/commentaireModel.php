@@ -75,8 +75,6 @@ class CommentaireModel extends Model
   private function createComment($auteurCommentaire, $contenuCommentaire, $idChapitre) {
     $req = $this->bdd->prepare("INSERT INTO `commentaires` (auteurCommentaire, contenuCommentaire, datePublication, id_chapitre) VALUES (:auteurCommentaire, :contenuCommentaire, NOW(), :idChapitre)");
 
-    die(var_dump($idChapitre));
-
     $req->execute(compact("auteurCommentaire", "contenuCommentaire", "idChapitre"));
 
     // $this->prepare($sql, compact("auteurCommentaire", "contenuCommentaire", "idChapitre")); 

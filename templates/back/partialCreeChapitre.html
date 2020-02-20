@@ -7,20 +7,24 @@
         <a href="{{ path }}/admin/">Retour à la liste des chapitres</a>
 
         <section class="form_newChapitre">
-            <form action="#">
+            <form action="" method="POST">
                 <div class="form-group">
                     <label for="titre" class="control-label">Titre</label>
-                    <input type="text" class="form-control" id="titre" placeholder="Titre">
+                    <input type="text" name="titre" class="form-control" id="titre" placeholder="Titre">
                 </div>
                 <div class="form-group">
                     <label for="resume" class="control-label">Résumé</label>
-                    <textarea class="form-control" maxlength="255" id="resume" placeholder="Résumé (max : 255 carac)"></textarea> 
+                    <textarea name="resume" class="form-control" maxlength="255" id="resume" placeholder="Résumé (max : 255 carac)"></textarea> 
+                </div>
+                <div class="form-group">
+                    <label for="slug" class="control-label">Slug</label>
+                    <textarea name="slug" class="form-control" maxlength="255" id="slug" placeholder="slug"></textarea> 
                 </div>
                 <div class="form-group">
                     <label for="contenue" class="control-label"></label>
-                    <textarea class="form-control" id="contenue" placeholder=""></textarea> 
+                    <textarea name="contenu" class="form-control" id="contenu" placeholder=""></textarea> 
                 </div>
-                <button type="submit" class="btn btn-primary">Publié</button>
+                <input type="submit" name="Ajouter_chapitre" value="Publié" class="btn btn-primary">
             </form>
         </section>
     </section>
