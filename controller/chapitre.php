@@ -41,13 +41,19 @@ class Chapitre
       // }
     // }
 
+    if ($safeData->post !== null){
+      $model = new ChapitreModel($source);
+    }        
+
 
     // on récupère les donnees de la bdd, et ont les hydrates
     $this->data = new ChapitreModel($source);
     $this->data = $this->data->donneesRead;
     
     if (isset($source["start"])) return $this->html = $this->afficheListeChapitre($source);
-    $this->hydrate($this->data);        
+    $this->hydrate($this->data);
+
+    die(var_dump($this->id));
   }
 
   public function hydrate($donnees){
@@ -101,10 +107,11 @@ class Chapitre
       $date     = $this->dateAjout;
     }
 
+
     // on apelle la vue, pour qu'elle remplace les mots dans partials par les donnees de la bdd que l'on a hydrater ds le constructeur
     return new View(
       [
-        // "{{ id }}"       => $id,
+        "{{ id }}"       => $this->id,
         "{{ titre }}"    => $this->titre,
         "{{ parution }}" => $parution,
         "{{ dateAjout }}"=> $date,

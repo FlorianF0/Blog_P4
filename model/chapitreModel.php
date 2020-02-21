@@ -17,20 +17,20 @@ class ChapitreModel extends Model
     if (isset($argument["id"])) $this->getDataFromId($argument["id"]);
     if (isset($argument["start"])) $this->getList($argument["start"], $argument["quantity"]);
 
+    // die(var_dump($safeData->post['id']));
+
     if ($safeData->post['id'] !== null) {
-      if ($safeData->post['Editer chapitre'] !== null) {
+      if ($safeData->post['Editer_chapitre'] !== null) {
           $this->updateState($safeData->post['slug']);
       }
 
-      if ($safeData->post['Supprimer chapitre'] !== null) {
-          $this->deleteChapitre($safeData->post['slug']);
+
+      if ($safeData->post['Supprimer_chapitre'] !== null) {
+          $this->deleteChapitre($safeData->post['id']);
       }
     }
 
     if($safeData->post['Ajouter_chapitre'] !== null) {
-
-      // die(var_dump($safeData->post['titre']));
-
       if(isset($safeData->post['titre']) AND isset($safeData->post['resume']) AND isset($safeData->post['slug']) AND isset($safeData->post['contenu'])){
         $this->createChapitre($safeData->post['titre'], $safeData->post['resume'], $safeData->post['slug'], $safeData->post['contenu']);
       }
