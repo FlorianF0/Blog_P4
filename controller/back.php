@@ -65,7 +65,7 @@ class Back extends Page
   
   public function afficheNewChapitre()
   {
-    // $monNouveauChapitre    = new Chapitre("");
+    $monNouveauChapitre    = new Chapitre("");
 
     $this->titre = "Ajouter un chapitre";
     $this->html  = file_get_contents("./templates/back/partialCreeChapitre.html");

@@ -28,18 +28,18 @@ class Chapitre
   {
     global $safeData;  
 
-    if ($safeData->post !== null){
-      if ($safeData->post["titre"] !== null){
-        //on appelle le model en lui demandant de mettre à jour les données
-        $model = new ChapitreModel([
-          "update"=> [
-            "titre"    => $safeData->post["titre"],
-            "contenu" => $safeData->post["contenu"],
-            "resume"   => $safeData->post["resume"],
-          ]
-        ]);
-      }
-    }
+    // if ($safeData->post !== null){
+      // if ($safeData->post["titre"] !== null){
+      //   //on appelle le model en lui demandant de mettre à jour les données
+      //   $model = new ChapitreModel([
+      //     "update"=> [
+      //       "titre"    => $safeData->post["titre"],
+      //       "contenu" => $safeData->post["contenu"],
+      //       "resume"   => $safeData->post["resume"],
+      //     ]
+      //   ]);
+      // }
+    // }
 
 
     // on récupère les donnees de la bdd, et ont les hydrates
@@ -66,7 +66,7 @@ class Chapitre
   public function afficheContenueChapitre(){
     
     // on regarde si la date de Modif est nul, si elle est nul on met dateAjout, sinon on met DateModif
-    if ($this->dateModif == null) {
+    if ($this->dateModif !== null) {
       $parution = "modifié";
       $date     = $this->dateModif;
     }
@@ -92,7 +92,7 @@ class Chapitre
   public function afficheContenueChapitreBack(){
     
     // on regarde si la date de Modif est nul, si elle est nul on met dateAjout, sinon on met DateModif
-    if ($this->dateModif == null) {
+    if ($this->dateModif !== null) {
       $parution = "modifié";
       $date     = $this->dateModif;
     }
