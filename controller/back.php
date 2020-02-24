@@ -24,6 +24,7 @@ class Back extends Page
     if ($uri[1] === "accueil") $this->afficheListeChapitreBack(0);
     if ($uri[1] === "chapitre") $this->afficheChapitreBack($uri[2]);
     if ($uri[1] === "newChapitre") $this->afficheNewChapitre();
+    if ($uri[1] === "editChapitre") $this->editChapitre($uri[2]);
     $this->renderPage();    
   }
 
@@ -32,8 +33,6 @@ class Back extends Page
 
     $monChapitre    = new Chapitre(["slug"=>$slug]);
     $monCommentaire = new Commentaire(["id"=>$monChapitre->id]);
-
-    // die(var_dump( $monCommentaire->afficheCommentaires()));
     $this->titre = $monChapitre->titre;
 
     $this->html  = new View(
@@ -65,17 +64,24 @@ class Back extends Page
   
   public function afficheNewChapitre()
   {
-    $monNouveauChapitre    = new Chapitre("");
+    $monNouveauChapitre = new Chapitre("");
 
     $this->titre = "Ajouter un chapitre";
     $this->html  = file_get_contents("./templates/back/partialCreeChapitre.html");
   }
   
-  public function editeChapitre()
+  public function editChapitre($slug)
   {
     
-    $monNouveauChapitre    = new Chapitre();
-    // $this->titre = "Ajouter un chapitre";
-    // $this->html  = file_get_contents("./templates/partialCreeChapitre.html");
+    $monChapitre = new Chapitre(["slug"=>$slug]);
+    $this->titre = $monChapitre->titre;
+
+    $this->html  = new View(
+      [
+        "{{ titre }}"                => $monChapitre->titre,
+        "{{ partialEditChapitre }}"  => $monChapitre->afficheEditChapitre(),
+      ],
+      "back/partialMainEditChapitre"
+    );
   }
 }

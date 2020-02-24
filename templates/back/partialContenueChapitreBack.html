@@ -4,9 +4,9 @@
 	<section class="contenu_article">
 		<form  method="POST">
 			<p> 
-		        <input type="hidden" name="id " value="{{ id }}">
-				<input type="submit" name="Editer_chapitre"    value="Editer">
+ 				<button><a href="{{ path }}/admin/editChapitre/{{ slug }}">Editer</button>
 				<input type="submit" name="Supprimer_chapitre" value="Supprimer">
+		        <input type="hidden" name="slug " value="{{ slug }}">
 			</p>
 		</form>
 

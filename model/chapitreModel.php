@@ -19,15 +19,15 @@ class ChapitreModel extends Model
 
     // die(var_dump($safeData->post['id']));
 
-    if ($safeData->post['id'] !== null) {
-      if ($safeData->post['Editer_chapitre'] !== null) {
-          $this->updateState($safeData->post['slug']);
-      }
+   
 
 
-      if ($safeData->post['Supprimer_chapitre'] !== null) {
-          $this->deleteChapitre($safeData->post['id']);
-      }
+    if ($safeData->post['Supprimer_chapitre'] !== null) {
+        $this->deleteChapitre($safeData->post['slug']);
+    }
+    
+    if ($safeData->post['Editer_chapitre'] !== null) {
+          $this->editChapitre($safeData->post['titre'], $safeData->post['resume'], $safeData->post['slug'], $safeData->post['contenu']);
     }
 
     if($safeData->post['Ajouter_chapitre'] !== null) {
@@ -39,13 +39,13 @@ class ChapitreModel extends Model
 
 
   private function getDataFromId($id){
-    $sql = "SELECT id, auteur, titre, contenu, slug, DATE_FORMAT(dateAjout, '%d %M %Y') AS dateAjout, DATE_FORMAT(dateModif, '%d %M %Y') AS dateModif FROM `chapitre` WHERE id = '$id'";
+    $sql = "SELECT id, auteur, titre, contenu, resume slug, DATE_FORMAT(dateAjout, '%d %M %Y') AS dateAjout, DATE_FORMAT(dateModif, '%d %M %Y') AS dateModif FROM `chapitre` WHERE id = '$id'";
     $this->query($sql);
   }
 
 
   private function getDataFromSlug($slug){
-    $sql = "SELECT id, auteur, titre, contenu, slug, DATE_FORMAT(dateAjout, '%d %M %Y') AS dateAjout, DATE_FORMAT(dateModif, '%d %M %Y') AS dateModif FROM `chapitre` WHERE slug = '$slug'";
+    $sql = "SELECT id, auteur, titre, contenu, resume, slug, DATE_FORMAT(dateAjout, '%d %M %Y') AS dateAjout, DATE_FORMAT(dateModif, '%d %M %Y') AS dateModif FROM `chapitre` WHERE slug = '$slug'";
     $this->query($sql);
   }
 
@@ -54,8 +54,8 @@ class ChapitreModel extends Model
     $this->query($sql, true);
   }
 
-  private function deleteChapitre($id){
-    $sql = "DELETE FROM `chapitre` WHERE id = '$id'";
+  private function deleteChapitre($slug){
+    $sql = "DELETE FROM `chapitre` WHERE slug = '$slug'";
     $this->prepare($sql);
   }
 
@@ -63,5 +63,12 @@ class ChapitreModel extends Model
     $sql = "INSERT INTO `chapitre` (titre, auteur, resume, slug, contenu, dateAjout) VALUES (:titre, 'Jean', :resume, :slug, :contenu, NOW())";
 
     $this->prepare($sql,compact("titre", "resume", "slug", "contenu"));
+  }
+
+  private function editChapitre($titre, $resume, $slug, $contenu) {
+    $sql = "UPDATE `chapitre` SET titre = :titre,  resume = :resume, contenu = :contenu, dateModif = NOW() WHERE slug = '$slug' ";
+
+    $this->prepare($sql,compact("titre", "resume", "contenu"));
+
   }
 }

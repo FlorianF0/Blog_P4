@@ -15,6 +15,8 @@ class Chapitre
   public  $html;
   public  $id = null;
   public  $titre;
+  public  $slug;
+  public  $resume;
   private $dateAjout;
   private $dateModif;
 
@@ -41,9 +43,6 @@ class Chapitre
       // }
     // }
 
-    if ($safeData->post !== null){
-      $model = new ChapitreModel($source);
-    }        
 
 
     // on récupère les donnees de la bdd, et ont les hydrates
@@ -53,7 +52,11 @@ class Chapitre
     if (isset($source["start"])) return $this->html = $this->afficheListeChapitre($source);
     $this->hydrate($this->data);
 
-    die(var_dump($this->id));
+    if ($safeData->post !== null){
+      
+      $model = new ChapitreModel($source);
+    }        
+    // die(var_dump($safeData->post['id']));
   }
 
   public function hydrate($donnees){
@@ -113,6 +116,7 @@ class Chapitre
       [
         "{{ id }}"       => $this->id,
         "{{ titre }}"    => $this->titre,
+        "{{ slug }}"     => $this->slug,
         "{{ parution }}" => $parution,
         "{{ dateAjout }}"=> $date,
         "{{ auteur }}"   => $this->auteur,
@@ -141,6 +145,20 @@ class Chapitre
       [],
       "partialFormConnexion"
       );
+  }
+
+
+  public function afficheEditChapitre() {
+
+    return new view ([
+        "{{ id }}"       => $this->id,
+        "{{ titre }}"    => $this->titre,
+        "{{ resume }}"   => $this->resume,
+        "{{ slug }}"     => $this->slug,
+        "{{ contenu }}"  => $this->contenu
+      ],
+      "back/partialEditChapitre"
+    );
   }
 
 

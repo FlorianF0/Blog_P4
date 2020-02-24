@@ -1,0 +1,32 @@
+
+<div id="main">
+    <section class = "new_chapitre">
+
+        <h2>Ajouter un chapitre</h2>
+
+        <a href="{{ path }}/admin/chapitre/{{ slug }}">Retour à la liste des chapitres</a>
+
+        <section class="form_newChapitre">
+            <form  method="POST">
+                <div class="form-group">
+                    <label for="titre" class="control-label">Titre</label>
+                    <input type="text" name="titre" class="form-control" id="titre" placeholder="Titre" value="{{ titre }}">
+                </div>
+                <div class="form-group">
+                    <label for="resume" class="control-label">Résumé</label>
+                    <textarea name="resume" class="form-control" maxlength="255" id="resume" placeholder="Résumé (max : 255 carac)">{{ resume }}</textarea> 
+                </div>
+                <div class="form-group">
+                    <label for="slug" class="control-label">Slug</label>
+                    <textarea name="slug" class="form-control" maxlength="255" id="slug" placeholder="slug">{{ slug }}</textarea> 
+                </div>
+                <div class="form-group">
+                    <label for="contenue" class="control-label"></label>
+                    <textarea name="contenu" class="form-control" id="contenu" placeholder="">{{ contenu }}</textarea> 
+                </div>
+                <input type="hidden" name="slug" value="{{ slug }}">
+                <input type="submit" name="Editer_chapitre" value="Editer" class="btn btn-primary">
+            </form>
+        </section>
+    </section>
+</div>
