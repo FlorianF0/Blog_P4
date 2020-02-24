@@ -13,21 +13,21 @@ class ChapitreModel extends Model
     parent::__construct();
     global $safeData;
 
-    if (isset($argument["slug"])) $this->getDataFromSlug($argument["slug"]);
-    if (isset($argument["id"])) $this->getDataFromId($argument["id"]);
-    if (isset($argument["start"])) $this->getList($argument["start"], $argument["quantity"]);
+    if (isset($argument["slug"]))   $this->getDataFromSlug($argument["slug"]);
+    if (isset($argument["id"]))     $this->getDataFromId($argument["id"]);
+    if (isset($argument["start"]))  $this->getList($argument["start"], $argument["quantity"]);
 
-    // die(var_dump($safeData->post['id']));
+    // die(var_dump($safeData->post['titre']));
 
    
 
 
     if ($safeData->post['Supprimer_chapitre'] !== null) {
-        $this->deleteChapitre($safeData->post['slug']);
+      $this->deleteChapitre($safeData->post['slug']);
     }
     
     if ($safeData->post['Editer_chapitre'] !== null) {
-          $this->editChapitre($safeData->post['titre'], $safeData->post['resume'], $safeData->post['slug'], $safeData->post['contenu']);
+      $this->editChapitre($safeData->post['titre'], $safeData->post['resume'], $safeData->post['slug'], $safeData->post['contenu']);
     }
 
     if($safeData->post['Ajouter_chapitre'] !== null) {

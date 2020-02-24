@@ -11,6 +11,7 @@ class Commentaire
 
   public  $data;
   public  $id = null;
+  public  $etat;
   public  $auteurCommentaire;
   public  $contenuCommentaire;
   private $datePublication;
@@ -46,7 +47,6 @@ class Commentaire
 
 
   public function afficheCommentaires(){
-
 
 
     // on crée une boucle pour connaitre l'etat du commentaire ds la bdd, puis on lui associe les boutons de son état

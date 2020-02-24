@@ -52,10 +52,10 @@ class Chapitre
     if (isset($source["start"])) return $this->html = $this->afficheListeChapitre($source);
     $this->hydrate($this->data);
 
-    if ($safeData->post !== null){
+    // if ($safeData->post !== null){
       
-      $model = new ChapitreModel($source);
-    }        
+    //   $model = new ChapitreModel($source);
+    // }        
     // die(var_dump($safeData->post['id']));
   }
 

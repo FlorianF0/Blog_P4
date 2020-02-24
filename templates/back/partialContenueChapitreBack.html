@@ -4,7 +4,7 @@
 	<section class="contenu_article">
 		<form  method="POST">
 			<p> 
- 				<button><a href="{{ path }}/admin/editChapitre/{{ slug }}">Editer</button>
+ 				<a class="button_edit" href="{{ path }}/admin/editChapitre/{{ slug }}"> <input type="button" name="button_edit" value="Editer"> </a>
 				<input type="submit" name="Supprimer_chapitre" value="Supprimer">
 		        <input type="hidden" name="slug " value="{{ slug }}">
 			</p>

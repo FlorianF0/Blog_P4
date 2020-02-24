@@ -3,3 +3,7 @@
 .text_chapitre {
 	text-align: justify;
 }
+
+.button_edit {
+	border-bottom: none;
+}
