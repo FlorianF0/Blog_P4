@@ -26,6 +26,7 @@ class Model
 	}
 
   protected function query($sql, $all=false){
+    // die(var_dump($sql));
     $reponse = $this->bdd->query($sql);
     
     $reponse->execute();
@@ -34,9 +35,8 @@ class Model
     else $this->donneesRead = $reponse->fetch();
   }
 
-  protected function prepare($sql, $compact = null) {
+  protected function prepare($sql, $data = null) {
     $req = $this->bdd->prepare($sql);
-    
-    $req->execute($compact);
+    $req->execute($data);
   }
 }

@@ -47,6 +47,8 @@ class Chapitre
 
     // on récupère les donnees de la bdd, et ont les hydrates
     $this->data = new ChapitreModel($source);
+    if ($safeData->post["Supprimer_chapitre"]) return $this->deleteChapitre();
+
     $this->data = $this->data->donneesRead;
     
     if (isset($source["start"])) return $this->html = $this->afficheListeChapitre($source);
@@ -161,6 +163,7 @@ class Chapitre
     );
   }
 
-
-
+  private function deleteChapitre(){
+    $this->html = file_get_contents("./templates/back/deleteChapitre.html");
+  }
 }

@@ -32,6 +32,12 @@ class Back extends Page
   {
 
     $monChapitre    = new Chapitre(["slug"=>$slug]);
+    global $safeData;    
+    if ($safeData->post["Supprimer_chapitre"]) {
+      $this->html = $monChapitre->html;
+      return;
+    }
+
     $monCommentaire = new Commentaire(["id"=>$monChapitre->id]);
     $this->titre = $monChapitre->titre;
 
@@ -83,5 +89,9 @@ class Back extends Page
       ],
       "back/partialMainEditChapitre"
     );
+  }
+
+  private function deleteChapitre(){
+    $this->html = file_get_contents("./templates/back/deleteChapitre.html");
   }
 }

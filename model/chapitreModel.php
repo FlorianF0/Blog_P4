@@ -23,7 +23,7 @@ class ChapitreModel extends Model
 
 
     if ($safeData->post['Supprimer_chapitre'] !== null) {
-      $this->deleteChapitre($safeData->post['slug']);
+      $this->deleteChapitre($safeData->post['idChapitre']);
     }
     
     if ($safeData->post['Editer_chapitre'] !== null) {
@@ -54,9 +54,9 @@ class ChapitreModel extends Model
     $this->query($sql, true);
   }
 
-  private function deleteChapitre($slug){
-    $sql = "DELETE FROM `chapitre` WHERE slug = '$slug'";
-    $this->prepare($sql);
+  private function deleteChapitre($id){
+    $sql = "DELETE FROM `chapitre` WHERE `id` = :id";
+    $this->prepare($sql, ["id"=>$id]);
   }
 
   private function createChapitre($titre, $resume, $slug, $contenu) {
