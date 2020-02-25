@@ -30,12 +30,15 @@ class Back extends Page
 
   private function afficheChapitreBack($slug)
   {
-
+    // on regarde si le bouton ajout/supprimer est activé et on redirige vers une page (message où l'on indique que l'action à bien était faites)
     $monChapitre    = new Chapitre(["slug"=>$slug]);
+    
     global $safeData;    
-    if ($safeData->post["Supprimer_chapitre"]) {
+    if($safeData->post !== null){
+      if ($safeData->post["Supprimer_chapitre"]) {
       $this->html = $monChapitre->html;
       return;
+      }
     }
 
     $monCommentaire = new Commentaire(["id"=>$monChapitre->id]);
@@ -72,6 +75,13 @@ class Back extends Page
   {
     $monNouveauChapitre = new Chapitre("");
 
+    global $safeData;
+
+    if ($safeData->post["Ajouter_chapitre"]) {
+        $this->html = $monNouveauChapitre->html;
+        return;
+    }
+
     $this->titre = "Ajouter un chapitre";
     $this->html  = file_get_contents("./templates/back/partialCreeChapitre.html");
   }
@@ -89,9 +99,5 @@ class Back extends Page
       ],
       "back/partialMainEditChapitre"
     );
-  }
-
-  private function deleteChapitre(){
-    $this->html = file_get_contents("./templates/back/deleteChapitre.html");
   }
 }

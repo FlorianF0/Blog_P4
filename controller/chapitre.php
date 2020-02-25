@@ -30,35 +30,16 @@ class Chapitre
   {
     global $safeData;  
 
-    // if ($safeData->post !== null){
-      // if ($safeData->post["titre"] !== null){
-      //   //on appelle le model en lui demandant de mettre à jour les données
-      //   $model = new ChapitreModel([
-      //     "update"=> [
-      //       "titre"    => $safeData->post["titre"],
-      //       "contenu" => $safeData->post["contenu"],
-      //       "resume"   => $safeData->post["resume"],
-      //     ]
-      //   ]);
-      // }
-    // }
-
-
-
     // on récupère les donnees de la bdd, et ont les hydrates
     $this->data = new ChapitreModel($source);
-    if ($safeData->post["Supprimer_chapitre"]) return $this->deleteChapitre();
+
+    if ($safeData->post["Supprimer_chapitre"]) return $this->messageDeleteChapitre();
+    if ($safeData->post["Ajouter_chapitre"])   return $this->messageAjoutChapitre();
 
     $this->data = $this->data->donneesRead;
     
     if (isset($source["start"])) return $this->html = $this->afficheListeChapitre($source);
     $this->hydrate($this->data);
-
-    // if ($safeData->post !== null){
-      
-    //   $model = new ChapitreModel($source);
-    // }        
-    // die(var_dump($safeData->post['id']));
   }
 
   public function hydrate($donnees){
@@ -163,7 +144,11 @@ class Chapitre
     );
   }
 
-  private function deleteChapitre(){
-    $this->html = file_get_contents("./templates/back/deleteChapitre.html");
+  private function messageDeleteChapitre(){
+    $this->html = file_get_contents("./templates/back/messageDeleteChapitre.html");
+  }
+
+  private function messageAjoutChapitre(){
+    $this->html = file_get_contents("./templates/back/messageAjoutChapitre.html");
   }
 }
