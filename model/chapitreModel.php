@@ -60,7 +60,7 @@ class ChapitreModel extends Model
   }
 
   private function createChapitre($titre, $resume, $slug, $contenu) {
-    $sql = "INSERT INTO `chapitre` (titre, auteur, resume, slug, contenu, dateAjout) VALUES (:titre, 'Jean', :resume, :slug, :contenu, NOW())";
+    $sql = "INSERT INTO `chapitre` (titre, auteur, resume, slug, contenu, dateAjout) VALUES (:titre, 'Jean Forteroche', :resume, :slug, :contenu, NOW())";
 
     $this->prepare($sql,compact("titre", "resume", "slug", "contenu"));
   }
