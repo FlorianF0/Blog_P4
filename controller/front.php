@@ -37,6 +37,8 @@ class Front extends Page
         "{{ titre }}"                     => $monChapitre->titre,
         "{{ partialContenueChapitre }}"   => $monChapitre->afficheContenueChapitre(),
         "{{ partialCommentaire }}"        => $monCommentaire->afficheCommentaires(),
+        "{{ partialFooter }}"             => $this->footer(),
+
         // "{{ partialFormConnexion }}" => $monChapitre->afficheFormConnexion()
       ],
       "partialChapitre"
@@ -55,6 +57,8 @@ class Front extends Page
     $this->html  = new View(
       [
         "{{ partialListeChapitre }}"    => $mesChapitres->html,
+        "{{ partialFooter }}"           => $this->footer(),
+
       ],
       "partialAccueil"
     );

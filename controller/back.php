@@ -49,6 +49,8 @@ class Back extends Page
         "{{ titre }}"                     => $monChapitre->titre,
         "{{ partialContenueChapitre }}"   => $monChapitre->afficheContenueChapitreBack(),
         "{{ partialCommentaire }}"        => $monCommentaire->afficheCommentairesBack(),
+        "{{ partialFooter }}"             => $this->footer(),
+
         // "{{ partialFormConnexion }}" => $monChapitre->afficheFormConnexion()
       ],
       "partialChapitre"
@@ -65,6 +67,8 @@ class Back extends Page
     $this->html  = new View(
       [
         "{{ partialListeChapitre }}"    => $mesChapitres->html,
+        "{{ partialFooter }}"             => $this->footer(),
+
       ],
       "back/partialAccueilBack"
     );

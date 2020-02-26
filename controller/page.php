@@ -15,8 +15,6 @@ class Page
       [
         "{{ titre }}"                => $this->titre,
         "{{ partialMain }}"          => $this->html,
-        "{{ partialFooter }}"        => $this->footer(),
-        // "{{ partialFormConnexion }}" => $monChapitre->afficheFormConnexion()
       ],
       "template"
     );
