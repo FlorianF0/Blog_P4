@@ -35,6 +35,7 @@ class Chapitre
 
     if ($safeData->post["Supprimer_chapitre"]) return $this->messageDeleteChapitre();
     if ($safeData->post["Ajouter_chapitre"])   return $this->messageAjoutChapitre();
+    if ($safeData->post["Editer_chapitre"])    return $this->messageEditChapitre();
 
     $this->data = $this->data->donneesRead;
     
@@ -150,5 +151,9 @@ class Chapitre
 
   private function messageAjoutChapitre(){
     $this->html = file_get_contents("./templates/back/messageAjoutChapitre.html");
+  }
+
+  private function messageEditChapitre(){
+    $this->html = file_get_contents("./templates/back/messageEditChapitre.html");
   }
 }

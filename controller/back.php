@@ -94,6 +94,14 @@ class Back extends Page
   {
     
     $monChapitre = new Chapitre(["slug"=>$slug]);
+
+    global $safeData;
+
+    if ($safeData->post["Editer_chapitre"]) {
+        $this->html = $monChapitre->html;
+        return;
+    }
+
     $this->titre = $monChapitre->titre;
 
     $this->html  = new View(

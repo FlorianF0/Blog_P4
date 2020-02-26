@@ -60,7 +60,7 @@ class Front extends Page
         "{{ partialFooter }}"           => $this->footer(),
 
       ],
-      "partialAccueil"
+      "front/partialAccueil"
     );
 
     $this->titre = "Accueil";    
