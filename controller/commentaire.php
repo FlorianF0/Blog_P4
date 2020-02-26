@@ -53,16 +53,16 @@ class Commentaire
     foreach ($this->data as $key => $value) {
       $this->data[$key]["{{ idChapitre }}"]  = $this->idChapitre;
 
-      if($value["etat"] === "0")  {
+      if($value["{{ etat }}"] === "0")  {
         $this->data[$key]["{{ buttons }}"]  = "";
       }  
-      if($value["etat"] === "1") {
+      if($value["{{ etat }}"] === "1") {
         $this->data[$key]["{{ buttons }}"]  = $this->bouttonFormulaire("Signaler");
       }
-      if($value["etat"] === "2") {
+      if($value["{{ etat }}"] === "2") {
         $this->data[$key]["{{ buttons }}"]  = file_get_contents("./templates/reportedAck.html");
       }
-      if($value["etat"] === "3") {
+      if($value["{{ etat }}"] === "3") {
         $this->data[$key]["{{ buttons }}"]  = "";
       }
     }
@@ -77,11 +77,11 @@ class Commentaire
     foreach ($this->data as $key => $value) {
       $this->data[$key]["{{ idChapitre }}"]  = $this->idChapitre;
 
-      if($value["etat"] === "0" || $value["etat"] === "2") {
+      if($value["{{ etat }}"] === "0" || $value["{{ etat }}"] === "2") {
         $this->data[$key]["{{ buttons }}"]  = $this->bouttonFormulaire("Valider");
         $this->data[$key]["{{ buttons }}"] .= $this->bouttonFormulaire("Supprimer");
       }
-      if($value["etat"] === "1" || $value["etat"] === "3") {
+      if($value["{{ etat }}"] === "1" || $value["{{ etat }}"] === "3") {
         $this->data[$key]["{{ buttons }}"]  = "";
       }
     }

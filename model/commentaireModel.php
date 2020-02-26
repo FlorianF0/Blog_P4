@@ -46,7 +46,7 @@ class CommentaireModel extends Model
 
 
   private function getDataFromChapitreId($id){
-    $sql = "SELECT id AS '{{ id }}', etat, id_chapitre AS '{{ idChapitre }}', auteurCommentaire AS '{{ auteurCommentaire }}', contenuCommentaire AS '{{ contenuCommentaire }}', DATE_FORMAT(datePublication, '%d %M %Y') AS '{{ datePublication }}', etat AS '{{ etat }}' FROM `commentaires` WHERE id_chapitre = '$id'";
+    $sql = "SELECT id AS '{{ id }}', etat AS '{{ etat }}', id_chapitre AS '{{ idChapitre }}', auteurCommentaire AS '{{ auteurCommentaire }}', contenuCommentaire AS '{{ contenuCommentaire }}', DATE_FORMAT(datePublication, '%d %M %Y') AS '{{ datePublication }}', etat AS '{{ etat }}' FROM `commentaires` WHERE id_chapitre = '$id'";
     $this->query($sql, true);
 
   }
@@ -63,8 +63,8 @@ class CommentaireModel extends Model
     // on incrémente l'état
 
     // on fait une requete pour mettre à jour l'état
-    $sql = "UPDATE `commentaires` SET etat = $etat + '1' WHERE  id = '$id'";
-    $this->prepare($sql);
+    $sql = "UPDATE `commentaires` SET etat = :etat + '1' WHERE  id = :id";
+    $this->prepare($sql, compact("etat", "id"));
 
 
   }
