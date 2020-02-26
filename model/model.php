@@ -18,6 +18,7 @@ class Model
         $this->bdd = new PDO("mysql:host=localhost;dbname={$config['baseDeDonne']};charset=utf8", $config["userBDD"], $config["passwordBDD"]);
         if ($config["debug"]) $this->bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $this->bdd->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+        $reponse = $this->bdd->query('SET lc_time_names = \'fr_FR\'');
     }
 
     catch (Exception $e) {
