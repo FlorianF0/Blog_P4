@@ -32,6 +32,22 @@ section.form_newChapitre #contenu {
 	height: 20rem;
 }
 
-section.form_newChapitre  .btn-primary {
-	margin-top: 2rem;	
+
+.button_chapitre {
+	margin-left: 0;
+	margin-top: 2rem;
 }
+
+	@media screen and (max-width: 768px) {
+
+		section.new_chapitre a {
+/*			display: block;
+*/			margin-left: 5px;
+		}
+
+		section.form_newChapitre {
+			padding: 5px;
+		}
+
+	}
+

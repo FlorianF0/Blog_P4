@@ -157,11 +157,15 @@ form > input {
 	margin-left: 2rem;
 }
 
-	@media screen and (max-width: 740px) {
+	@media screen and (max-width: 768px) {
 
 		#comments {
 			margin-left: 0px;
 			margin-right: 0px;
+			width: 100%;
+		}
+
+		#auteurCommentaire {
 			width: 100%;
 		}
 
@@ -180,7 +184,12 @@ form > input {
 
 		.commentaire_signaler {
 			display: inline-block;
+			margin-left: 4.4rem;
 			margin-top: 1rem;
+		}
+
+		.moderation_button {
+			margin-top: 0.3rem !important;
 		}
 	}
 
