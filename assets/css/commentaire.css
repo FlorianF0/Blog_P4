@@ -134,8 +134,10 @@
 	margin-right:10px;
 }
 
-.row > * {
-	width: -moz-available;
+#comments .row > * {
+/*	width: -moz-available;
+	width: -webkit-fill-available;*/
+	width: 100%
 }
 
 
