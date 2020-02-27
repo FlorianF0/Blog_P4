@@ -1,8 +1,13 @@
 
-
-section.new_chapitre {
+.main_newChapitre {
 	margin-top: 3rem;
 	margin-bottom: 3rem;
+}
+
+
+section.new_chapitre {
+/*	margin-top: 3rem;
+*/	margin-bottom: 3rem;
 }
 
 

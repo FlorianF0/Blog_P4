@@ -13,15 +13,17 @@ class ChapitreModel extends Model
     parent::__construct();
     global $safeData;
 
+    // on récupère le chapitre grâce au slug
     if (isset($argument["slug"]))   $this->getDataFromSlug($argument["slug"]);
+
+    // on récupère le chapitre grâce a l'id
     if (isset($argument["id"]))     $this->getDataFromId($argument["id"]);
+
+    // affiche la liste des articles (argument: start->de quel id on commence, quandtiy->le nbr de chapitre que l'onveux sur la page)
     if (isset($argument["start"]))  $this->getList($argument["start"], $argument["quantity"]);
 
-    // die(var_dump($safeData->post['titre']));
 
-   
-
-
+    // quand un input est éctivité, on appel la fonction associé
     if ($safeData->post['Supprimer_chapitre'] !== null) {
       $this->deleteChapitre($safeData->post['idChapitre']);
     }

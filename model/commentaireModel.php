@@ -17,7 +17,6 @@ class CommentaireModel extends Model
     if ($safeData->post['idCommentaire'] !== null) {
       if ($safeData->post['Valider'] !== null) {
         $this->updateState($safeData->post['idCommentaire'], $safeData->post['etatCommentaire']);
-            // die(var_dump($safeData->post['etatCommentaire']));
       }
 
       if ($safeData->post['Supprimer'] !== null) {

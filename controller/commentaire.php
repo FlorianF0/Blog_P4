@@ -100,7 +100,6 @@ class Commentaire
   
   private function finaliseAfficheCommentaire($data){
 
-    // die(var_dump($data));
     if(empty($this->data))  $partialListeCommentaire = "Aucun commentaire";
 
     else $partialListeCommentaire = new View(
