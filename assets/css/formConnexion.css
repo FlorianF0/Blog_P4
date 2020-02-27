@@ -4,17 +4,18 @@
   padding: 8% 0 0;
   margin: auto;
 }
-.form {
+.formConnex {
   position: relative;
   z-index: 1;
   background: #FFFFFF;
   max-width: 360px;
   margin: 0 auto 100px;
   padding: 45px;
+  padding-bottom: 1rem;
   text-align: center;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
-.form input {
+.formConnex input {
   font-family: "Roboto", sans-serif;
   outline: 0;
   background: #f2f2f2;
@@ -24,13 +25,15 @@
   padding: 15px;
   box-sizing: border-box;
   font-size: 14px;
+  color: rgb(99,99,99);
 }
-.form .login {
+.formConnex .login {
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
   outline: 0;
   background: #4CAF50;
   width: 100%;
+  height: 4rem;
   border: 0;
   padding: 15px;
   color: #FFFFFF;
@@ -38,52 +41,83 @@
   -webkit-transition: all 0.3 ease;
   transition: all 0.3 ease;
   cursor: pointer;
+  margin-bottom: 0;
 }
-.form .login:hover,.form .login:active,.form .login:focus {
+.formConnex .login:hover,.formConnex .login:active,.formConnex .login:focus {
   background: #43A047;
 }
-.form .message {
+.formConnex .message {
   margin: 15px 0 0;
   color: #b3b3b3;
   font-size: 12px;
 }
-.form .message a {
+.formConnex .message a {
   color: #4CAF50;
   text-decoration: none;
 }
-.form .register-form {
+.formConnex.formConnex .register-form {
   display: none;
 }
-.container {
+.formConnex .container {
   position: relative;
   z-index: 1;
   max-width: 300px;
   margin: 0 auto;
 }
-.container:before, .container:after {
+.formConnex .container:before, .container:after {
   content: "";
   display: block;
   clear: both;
 }
-.container .info {
+.formConnex .container .info {
   margin: 50px auto;
   text-align: center;
 }
-.container .info h1 {
+.formConnex .container .info h1 {
   margin: 0 0 15px;
   padding: 0;
   font-size: 36px;
   font-weight: 300;
   color: #1a1a1a;
 }
-.container .info span {
+.formConnex .container .info span {
   color: #4d4d4d;
   font-size: 12px;
 }
-.container .info span a {
+.formConnex .container .info span a {
   color: #000000;
   text-decoration: none;
 }
-.container .info span .fa {
+.formConnex .container .info span .fa {
   color: #EF3B3A;
 }
+
+.login-form input::-webkit-input-placeholder {
+color: rgba(99,99,99,0.5) !important;
+}
+.login-form input:-moz-placeholder { /* Firefox 18- */
+color: rgba(99,99,99,0.5) !important; 
+}
+.login-form input::-moz-placeholder {  /* Firefox 19+ */
+color: rgba(99,99,99,0.5) !important; 
+}
+.login-form input:-ms-input-placeholder { 
+color: rgba(99,99,99,0.5) !important;
+}
+
+
+  @media screen and (max-width: 768px) {
+    .login-page {
+       max-width: 300px;
+    }
+
+    .formConnex {
+      margin-bottom: .5rem;
+    }
+
+
+
+
+  }
+
+

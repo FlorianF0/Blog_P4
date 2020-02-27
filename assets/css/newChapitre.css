@@ -1,5 +1,11 @@
 
 
+section.new_chapitre {
+	margin-top: 3rem;
+	margin-bottom: 3rem;
+}
+
+
 section.new_chapitre h2{
 	text-align: center;
 	padding-top: 1rem;
@@ -40,9 +46,12 @@ section.form_newChapitre #contenu {
 
 	@media screen and (max-width: 768px) {
 
+		section.new_chapitre h2 {
+			font-size: 2rem;
+		}
+
 		section.new_chapitre a {
-/*			display: block;
-*/			margin-left: 5px;
+			margin-left: 5px;
 		}
 
 		section.form_newChapitre {
