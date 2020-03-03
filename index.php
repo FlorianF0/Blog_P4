@@ -1,6 +1,8 @@
 <?php
 require_once "controller/security.php";
 
+session_start();
+
 //config florian
 $config = [
   "baseDeDonne" => "blogoc",
@@ -29,7 +31,7 @@ if ($config["debug"]){
 $safeData = new Security([
   "uri" => $config["path"],
   "post" =>[
-    "contenu"             => FILTER_SANITIZE_STRING,
+    "contenu"             => FILTER_SANITIZE_FULL_SPECIAL_CHARS,
     "resume"              => FILTER_SANITIZE_STRING,
     "titre"               => FILTER_SANITIZE_STRING,
     "Ajouter_chapitre"    => FILTER_SANITIZE_STRING,
@@ -69,5 +71,5 @@ switch ($uri[0]){
     $page = new Front($uri);
     break;
 }
-
+if ($page->specialHeader !== null) header($specialHeader);
 echo $page->html;

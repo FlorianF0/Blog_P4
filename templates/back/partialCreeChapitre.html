@@ -18,6 +18,29 @@
                 </div>
                 <div class="form-group">
                     <label for="slug" class="control-label">Slug</label>
+                    <script type="text/javascript">
+                        function generateSlug(title,target){
+                            const slug = title.toLowerCase()
+                                .replace(/\s+/g, '-')           // Replace spaces with -
+                                .replace(/[àáâãäå]/g,"a")
+                                .replace(/æ/g,"ae")
+                                .replace(/ç/g,"c")
+                                .replace(/[èéêë]/g,"e")
+                                .replace(/[ìíîï]/g,"i")
+                                .replace(/ñ/g,"n")                
+                                .replace(/[òóôõö]/g,"o")
+                                .replace(/œ/g,"oe")
+                                .replace(/[ùúûü]/g,"u")
+                                .replace(/[ýÿ]/g,"y")
+                                .replace(/['’]/g,"-")
+                                .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
+                                .replace(/\-\-+/g, '-')         // Replace multiple - with single -
+                                .replace(/^-+/, '')             // Trim - from start of text
+                                .replace(/-+$/, '')            // Trim - from end of text
+                            target.value = slug;
+                        }
+                    </script>
+                    <slugify onclick="event.stopPropagation();generateSlug(document.getElementById('titre').value, document.getElementById('slug'))">générer slug</slugify>
                     <textarea name="slug" class="form-control" maxlength="255" id="slug" placeholder="slug"></textarea> 
                 </div>
                 <div class="form-group">

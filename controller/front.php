@@ -12,6 +12,7 @@ class Front extends Page
   public $id;
   public $id_chapitre;
   private $nombreParPage = 5;
+  private $uri;
 
   /**
    * [__construct description]
@@ -19,16 +20,42 @@ class Front extends Page
    */
   public function __construct($uri)
   {
-    if ($uri[0] === "") $this->afficheListeChapitre(0);
-    if ($uri[0] === "chapitre") $this->afficheChapitre($uri[1]);
-    if ($uri[0] === "accueil") $this->afficheListeChapitre(0);
+    $this->uri = $uri;
+
+    if ( isset($uri[0]) ) $todo = $uri[0];
+    else $todo = "accueil";
+    if ($todo === "") $todo = "accueil";
+    if (!method_exists($this, $todo)) $todo = "page404";
+
+    $todo();
+
+
+    // if ($uri[0] === "") $this->afficheListeChapitre(0);
+    // if ($uri[0] === "chapitre") 
+    // if ($uri[0] === "accueil") $this->afficheListeChapitre(0);
     $this->renderPage();
   }
+
+
+  private function accueil(){
+    $this->afficheListeChapitre(0);
+  }
+
+  private function chapitre(){
+    $this->afficheChapitre($this->uri[1]);
+  }
+
 
   private function afficheChapitre($slug)
   {
 
     $monChapitre    = new Chapitre(["slug"=>$slug]);
+    //
+    //
+    // if (!isset($monChapitre->titre)){
+    //   $this->page404();
+    //   return;
+    // }
     $monCommentaire = new Commentaire(["id"=>$monChapitre->id]);
     $this->titre = $monChapitre->titre;
 

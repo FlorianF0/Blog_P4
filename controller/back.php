@@ -18,13 +18,23 @@ class Back extends Page
    */
   public function __construct($uri)
   {
-    global $safeData;
+    // global $safeData;
+
+    $user = new User();
+
+
+
 
     if ($uri[1] === "") $this->afficheListeChapitreBack(0);
     if ($uri[1] === "accueil") $this->afficheListeChapitreBack(0);
     if ($uri[1] === "chapitre") $this->afficheChapitreBack($uri[2]);
     if ($uri[1] === "newChapitre") $this->afficheNewChapitre();
     if ($uri[1] === "editChapitre") $this->editChapitre($uri[2]);
+
+
+    if ($user->name === null) $todo = "login";
+
+
     $this->renderPage();    
   }
 

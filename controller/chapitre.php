@@ -76,7 +76,7 @@ class Chapitre
         "{{ parution }}" => $parution,
         "{{ dateAjout }}"=> $date,
         "{{ auteur }}"   => $this->auteur,
-        "{{ contenu }}"  => $this->contenu
+        "{{ contenu }}"  => htmlspecialchars_decode($this->contenu)
       ],
       "front/partialContenueChapitre"
     );
@@ -104,7 +104,7 @@ class Chapitre
         "{{ parution }}" => $parution,
         "{{ dateAjout }}"=> $date,
         "{{ auteur }}"   => $this->auteur,
-        "{{ contenu }}"  => $this->contenu
+        "{{ contenu }}"  => htmlspecialchars_decode($this->contenu)
       ],
       "back/partialContenueChapitreBack"
     );
