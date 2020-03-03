@@ -1,5 +1,6 @@
 <?php
 require_once "controller/security.php";
+require_once "controller/page.php";
 
 session_start();
 
@@ -71,5 +72,7 @@ switch ($uri[0]){
     $page = new Front($uri);
     break;
 }
-if ($page->specialHeader !== null) header($specialHeader);
+
+// if ($page->specialHeader !== null) header($specialHeader);
+
 echo $page->html;

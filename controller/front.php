@@ -27,7 +27,7 @@ class Front extends Page
     if ($todo === "") $todo = "accueil";
     if (!method_exists($this, $todo)) $todo = "page404";
 
-    $todo();
+    $this->$todo();
 
 
     // if ($uri[0] === "") $this->afficheListeChapitre(0);
