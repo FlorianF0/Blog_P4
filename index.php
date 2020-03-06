@@ -53,6 +53,11 @@ $safeData = new Security([
     "Supprimer_chapitre"  => FILTER_SANITIZE_STRING,
     "slug"                => FILTER_SANITIZE_STRING,
 
+    "identifiant"         => FILTER_SANITIZE_STRING,
+    "mdp"                 => FILTER_SANITIZE_STRING,
+    "connexion"           => FILTER_SANITIZE_STRING,
+
+
 
 
   ]

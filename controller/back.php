@@ -18,9 +18,8 @@ class Back extends Page
    */
   public function __construct($uri)
   {
-    // global $safeData;
 
-      // $user = new User();
+      
 
     $this->uri = $uri;
 
@@ -30,9 +29,6 @@ class Back extends Page
     if (!method_exists($this, $todo)) $todo = "page404";
 
     $this->$todo();
-
-    // if ($user->name === null) $todo = "login";
-
 
     $this->renderPage();    
   }

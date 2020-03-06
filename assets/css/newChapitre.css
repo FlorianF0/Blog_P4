@@ -49,6 +49,13 @@ section.form_newChapitre #contenu {
 	margin-top: 2rem;
 }
 
+
+.tox-editor-header button {
+	box-shadow: none !important;
+	min-width: 0;
+
+}
+
 	@media screen and (max-width: 768px) {
 
 		section.new_chapitre h2 {
