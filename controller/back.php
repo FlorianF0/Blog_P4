@@ -20,29 +20,51 @@ class Back extends Page
   {
     // global $safeData;
 
-    $user = new User();
+      // $user = new User();
 
+    $this->uri = $uri;
 
+    if ( isset($uri[1]) ) $todo = $uri[1];
+    else $todo = "accueil";
+    if ($todo === "") $todo = "accueil";
+    if (!method_exists($this, $todo)) $todo = "page404";
 
+    $this->$todo();
 
-    if ($uri[1] === "") $this->afficheListeChapitreBack(0);
-    if ($uri[1] === "accueil") $this->afficheListeChapitreBack(0);
-    if ($uri[1] === "chapitre") $this->afficheChapitreBack($uri[2]);
-    if ($uri[1] === "newChapitre") $this->afficheNewChapitre();
-    if ($uri[1] === "editChapitre") $this->editChapitre($uri[2]);
-
-
-    if ($user->name === null) $todo = "login";
+    // if ($user->name === null) $todo = "login";
 
 
     $this->renderPage();    
+  }
+
+  private function accueil(){
+    $this->afficheListeChapitreBack(0);
+  }
+
+  private function chapitre(){
+    $this->afficheChapitreBack($this->uri[2]);
+  }
+
+  private function newChapitre() {
+    $this->afficheNewChapitre();
+  }
+
+  private function editChapitre() {
+    $this->editChapitreBack($this->uri[2]);
   }
 
   private function afficheChapitreBack($slug)
   {
     // on regarde si le bouton ajout/supprimer est activé et on redirige vers une page (message où l'on indique que l'action à bien était faites)
     $monChapitre    = new Chapitre(["slug"=>$slug]);
-    
+      
+    // redirige vers une page error404
+    if (!isset($monChapitre->titre)){
+      $this->page404();
+      return;
+    }
+
+
     global $safeData;    
     if($safeData->post !== null){
       if ($safeData->post["Supprimer_chapitre"]) {
@@ -100,7 +122,7 @@ class Back extends Page
     $this->html  = file_get_contents("./templates/back/partialCreeChapitre.html");
   }
   
-  public function editChapitre($slug)
+  public function editChapitreBack($slug)
   {
     
     $monChapitre = new Chapitre(["slug"=>$slug]);

@@ -121,16 +121,7 @@ class Chapitre
       $this->data,
       $template
     );
-  }
-
-   public function afficheFormConnexion()
-  {
-    return new View(
-      [],
-      "partialFormConnexion"
-      );
-  }
-
+  } 
 
   public function afficheEditChapitre() {
 
