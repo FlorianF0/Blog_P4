@@ -99,7 +99,7 @@ class Front extends Page
   }
 
 
-  public function afficheConnexion() {
-      $this->html = file_get_contents("./templates/partialFormConnexion.html");
-  }
+  // public function afficheConnexion() {
+  //     $this->html = file_get_contents("./templates/partialFormConnexion.html");
+  // }
 }

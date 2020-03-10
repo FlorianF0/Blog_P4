@@ -23,4 +23,8 @@ class Security
     $this->uri = explode("/", $this->uri);
     $this->uri = array_slice($this->uri, 1);
   }
+
+  public function encode($str){
+    return hash('sha256', $str);
+  }
 }

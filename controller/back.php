@@ -3,6 +3,7 @@
 require_once "controller/commentaire.php";
 require_once "controller/chapitre.php";
 require_once "controller/page.php";
+require_once "controller/user.php";
 require_once "view/view.php";
 
 
@@ -18,14 +19,16 @@ class Back extends Page
    */
   public function __construct($uri)
   {
-
-      
-
     $this->uri = $uri;
 
     if ( isset($uri[1]) ) $todo = $uri[1];
     else $todo = "accueil";
     if ($todo === "") $todo = "accueil";
+
+    //on vérifie l'authentification
+    $user = new User();
+    if ($user->pseudo === null) $todo = "login";
+
     if (!method_exists($this, $todo)) $todo = "page404";
 
     $this->$todo();
@@ -139,5 +142,10 @@ class Back extends Page
       ],
       "back/partialMainEditChapitre"
     );
+  }
+
+  private function login(){
+    $this->html = file_get_contents("./templates/partialFormConnexion.html");
+    $this->titre = "merci de vous identifier";
   }
 }

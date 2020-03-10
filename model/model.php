@@ -7,7 +7,7 @@ class Model
 
 	protected $bdd;
   public $donneesRead;
-  public $donneesPrepare;
+  // public $donneesPrepare;
 
 
 	public function __construct()
