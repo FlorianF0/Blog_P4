@@ -1,5 +1,6 @@
 <?php
 require_once "controller/security.php";
+require_once "controller/page.php";
 
 session_start();
 
@@ -52,6 +53,11 @@ $safeData = new Security([
     "Supprimer_chapitre"  => FILTER_SANITIZE_STRING,
     "slug"                => FILTER_SANITIZE_STRING,
 
+    "identifiant"         => FILTER_SANITIZE_STRING,
+    "mdp"                 => FILTER_SANITIZE_STRING,
+    "connexion"           => FILTER_SANITIZE_STRING,
+
+
 
 
   ]
@@ -71,5 +77,7 @@ switch ($uri[0]){
     $page = new Front($uri);
     break;
 }
-if ($page->specialHeader !== null) header($specialHeader);
+
+// if ($page->specialHeader !== null) header($specialHeader);
+
 echo $page->html;

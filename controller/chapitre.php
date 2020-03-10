@@ -121,16 +121,7 @@ class Chapitre
       $this->data,
       $template
     );
-  }
-
-   public function afficheFormConnexion()
-  {
-    return new View(
-      [],
-      "partialFormConnexion"
-      );
-  }
-
+  } 
 
   public function afficheEditChapitre() {
 
@@ -147,6 +138,7 @@ class Chapitre
 
   private function messageDeleteChapitre(){
     $this->html = file_get_contents("./templates/back/messageDeleteChapitre.html");
+    $this->titre = 'Chapitre-delete';
   }
 
   private function messageAjoutChapitre(){

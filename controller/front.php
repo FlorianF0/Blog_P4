@@ -3,6 +3,7 @@
 require_once "controller/commentaire.php";
 require_once "controller/chapitre.php";
 require_once "controller/page.php";
+require_once "controller/user.php";
 require_once "view/view.php";
 
 
@@ -20,6 +21,9 @@ class Front extends Page
    */
   public function __construct($uri)
   {
+
+    // $user = new User();
+
     $this->uri = $uri;
 
     if ( isset($uri[0]) ) $todo = $uri[0];
@@ -27,12 +31,10 @@ class Front extends Page
     if ($todo === "") $todo = "accueil";
     if (!method_exists($this, $todo)) $todo = "page404";
 
-    $todo();
+    $this->$todo();
 
+    // if ($user->name === null) $todo = "login";
 
-    // if ($uri[0] === "") $this->afficheListeChapitre(0);
-    // if ($uri[0] === "chapitre") 
-    // if ($uri[0] === "accueil") $this->afficheListeChapitre(0);
     $this->renderPage();
   }
 
@@ -45,17 +47,22 @@ class Front extends Page
     $this->afficheChapitre($this->uri[1]);
   }
 
+  private function connexion() {
+    $this->afficheConnexion();
+  }
+
 
   private function afficheChapitre($slug)
   {
 
-    $monChapitre    = new Chapitre(["slug"=>$slug]);
-    //
-    //
-    // if (!isset($monChapitre->titre)){
-    //   $this->page404();
-    //   return;
-    // }
+    $monChapitre = new Chapitre(["slug"=>$slug]);
+    
+    // redirige vers une page error404 
+    if (!isset($monChapitre->titre)){
+      $this->page404();
+      return;
+    }
+
     $monCommentaire = new Commentaire(["id"=>$monChapitre->id]);
     $this->titre = $monChapitre->titre;
 
@@ -81,7 +88,6 @@ class Front extends Page
 
     $this->html  = new View(
       [
-        "{{ partialFormConnexion }}"    => $mesChapitres->afficheFormConnexion(),
         "{{ partialListeChapitre }}"    => $mesChapitres->html,
         "{{ partialFooter }}"           => $this->footer(),
 
@@ -90,5 +96,10 @@ class Front extends Page
     );
 
     $this->titre = "Accueil";    
+  }
+
+
+  public function afficheConnexion() {
+      $this->html = file_get_contents("./templates/partialFormConnexion.html");
   }
 }

@@ -22,7 +22,6 @@ class Page
   }
 
   protected function page404(){
-    $this->specialHeader = "HTTP/1.0 404 Not Found";
-
+    $this->html = file_get_contents("./templates/partialError404.html");
   }
 }
