@@ -22,8 +22,6 @@ class Front extends Page
   public function __construct($uri)
   {
 
-    // $user = new User();
-
     $this->uri = $uri;
 
     if ( isset($uri[0]) ) $todo = $uri[0];
@@ -32,8 +30,6 @@ class Front extends Page
     if (!method_exists($this, $todo)) $todo = "page404";
 
     $this->$todo();
-
-    // if ($user->name === null) $todo = "login";
 
     $this->renderPage();
   }
@@ -45,10 +41,6 @@ class Front extends Page
 
   private function chapitre(){
     $this->afficheChapitre($this->uri[1]);
-  }
-
-  private function connexion() {
-    $this->afficheConnexion();
   }
 
 

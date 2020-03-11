@@ -28,6 +28,7 @@ class Back extends Page
     //on vérifie l'authentification
     $user = new User();
     if ($user->pseudo === null) $todo = "login";
+    // die(var_dump($user->pseudo));
 
     if (!method_exists($this, $todo)) $todo = "page404";
 
@@ -50,6 +51,11 @@ class Back extends Page
 
   private function editChapitre() {
     $this->editChapitreBack($this->uri[2]);
+  }
+
+  private function login(){
+    $this->html = file_get_contents("./templates/partialFormConnexion.html");
+    $this->titre = "Merci de vous identifier";
   }
 
   private function afficheChapitreBack($slug)
@@ -144,8 +150,4 @@ class Back extends Page
     );
   }
 
-  private function login(){
-    $this->html = file_get_contents("./templates/partialFormConnexion.html");
-    $this->titre = "merci de vous identifier";
-  }
 }

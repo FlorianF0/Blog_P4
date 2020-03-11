@@ -56,10 +56,6 @@ $safeData = new Security([
     "identifiant"         => FILTER_SANITIZE_STRING,
     "mdp"                 => FILTER_SANITIZE_STRING,
     "connexion"           => FILTER_SANITIZE_STRING,
-
-
-
-
   ]
 ]);
 
