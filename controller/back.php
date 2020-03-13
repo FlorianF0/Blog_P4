@@ -17,20 +17,20 @@ class Back extends Page
    * [__construct description]
    * @param Array $uri [description]
    */
-  public function __construct($uri)
+  public function __construct( $uri )
   {
     $this->uri = $uri;
 
-    if ( isset($uri[1]) ) $todo = $uri[1];
+    if ( isset( $uri[1] ) ) $todo = $uri[1];
     else $todo = "accueil";
-    if ($todo === "") $todo = "accueil";
+    if ( $todo === "" ) $todo = "accueil";
 
     //on vérifie l'authentification
     $user = new User();
-    if ($user->pseudo === null) $todo = "login";
+    if ( $user->pseudo === null ) $todo = "login";
     // die(var_dump($user->pseudo));
 
-    if (!method_exists($this, $todo)) $todo = "page404";
+    if ( !method_exists( $this , $todo ) ) $todo = "page404";
 
     $this->$todo();
 
@@ -42,7 +42,7 @@ class Back extends Page
   }
 
   private function chapitre(){
-    $this->afficheChapitreBack($this->uri[2]);
+    $this->afficheChapitreBack( $this->uri[2] );
   }
 
   private function newChapitre() {
@@ -50,35 +50,35 @@ class Back extends Page
   }
 
   private function editChapitre() {
-    $this->editChapitreBack($this->uri[2]);
+    $this->editChapitreBack( $this->uri[2] );
   }
 
   private function login(){
-    $this->html = file_get_contents("./templates/partialFormConnexion.html");
+    $this->html = file_get_contents( "./templates/partialFormConnexion.html" );
     $this->titre = "Merci de vous identifier";
   }
 
-  private function afficheChapitreBack($slug)
+  private function afficheChapitreBack( $slug )
   {
     // on regarde si le bouton ajout/supprimer est activé et on redirige vers une page (message où l'on indique que l'action à bien était faites)
-    $monChapitre    = new Chapitre(["slug"=>$slug]);
+    $monChapitre  = new Chapitre( [ "slug" => $slug ] );
       
     // redirige vers une page error404
-    if (!isset($monChapitre->titre)){
+    if ( !isset( $monChapitre->titre ) ){
       $this->page404();
       return;
     }
 
 
     global $safeData;    
-    if($safeData->post !== null){
-      if ($safeData->post["Supprimer_chapitre"]) {
+    if ( $safeData->post !== null ){
+      if ( $safeData->post["Supprimer_chapitre"] ) {
       $this->html = $monChapitre->html;
       return;
       }
     }
 
-    $monCommentaire = new Commentaire(["id"=>$monChapitre->id]);
+    $monCommentaire = new Commentaire( [ "id" => $monChapitre->id ] );
     $this->titre = $monChapitre->titre;
 
     $this->html  = new View(
@@ -95,15 +95,15 @@ class Back extends Page
 
   }
 
-  public function afficheListeChapitreBack($depart)
+  public function afficheListeChapitreBack( $depart )
   {
 
     
-    $mesChapitres = new Chapitre(["start"=>$depart, "quantity"=> $this->nombreParPage]);
+    $mesChapitres = new Chapitre( [ "start" => $depart, "quantity"=> $this->nombreParPage ] );
 
     $this->html  = new View(
       [
-        "{{ partialListeChapitre }}"    => $mesChapitres->html,
+        "{{ partialListeChapitre }}"      => $mesChapitres->html,
         "{{ partialFooter }}"             => $this->footer(),
 
       ],
@@ -118,19 +118,19 @@ class Back extends Page
 
     global $safeData;
 
-    if ($safeData->post["Ajouter_chapitre"]) {
+    if ( $safeData->post["Ajouter_chapitre"] ) {
         $this->html = $monNouveauChapitre->html;
         return;
     }
 
     $this->titre = "Ajouter un chapitre";
-    $this->html  = file_get_contents("./templates/back/partialCreeChapitre.html");
+    $this->html  = file_get_contents( "./templates/back/partialCreeChapitre.html" );
   }
   
-  public function editChapitreBack($slug)
+  public function editChapitreBack( $slug )
   {
     
-    $monChapitre = new Chapitre(["slug"=>$slug]);
+    $monChapitre = new Chapitre( [ "slug"=>$slug ] );
 
     global $safeData;
 

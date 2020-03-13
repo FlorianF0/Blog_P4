@@ -19,15 +19,15 @@ class Front extends Page
    * [__construct description]
    * @param Array $uri [description]
    */
-  public function __construct($uri)
+  public function __construct( $uri )
   {
 
     $this->uri = $uri;
 
-    if ( isset($uri[0]) ) $todo = $uri[0];
+    if ( isset( $uri[0] ) ) $todo = $uri[0];
     else $todo = "accueil";
     if ($todo === "") $todo = "accueil";
-    if (!method_exists($this, $todo)) $todo = "page404";
+    if ( !method_exists( $this , $todo ) ) $todo = "page404";
 
     $this->$todo();
 
@@ -40,22 +40,22 @@ class Front extends Page
   }
 
   private function chapitre(){
-    $this->afficheChapitre($this->uri[1]);
+    $this->afficheChapitre( $this->uri[1] );
   }
 
 
-  private function afficheChapitre($slug)
+  private function afficheChapitre( $slug )
   {
 
-    $monChapitre = new Chapitre(["slug"=>$slug]);
+    $monChapitre = new Chapitre( ["slug" => $slug] );
     
     // redirige vers une page error404 
-    if (!isset($monChapitre->titre)){
+    if ( !isset( $monChapitre->titre ) ){
       $this->page404();
       return;
     }
 
-    $monCommentaire = new Commentaire(["id"=>$monChapitre->id]);
+    $monCommentaire = new Commentaire( ["id" => $monChapitre->id] );
     $this->titre = $monChapitre->titre;
 
     $this->html  = new View(
@@ -71,12 +71,12 @@ class Front extends Page
 
   
 
-  public function afficheListeChapitre($depart)
+  public function afficheListeChapitre( $depart )
   {
 
     
-    $mesChapitres = new Chapitre(["start"    =>$depart,
-                                  "quantity" => $this->nombreParPage]);
+    $mesChapitres = new Chapitre( ["start"    => $depart,
+                                   "quantity" => $this->nombreParPage] );
 
     $this->html  = new View(
       [
@@ -89,9 +89,4 @@ class Front extends Page
 
     $this->titre = "Accueil";    
   }
-
-
-  // public function afficheConnexion() {
-  //     $this->html = file_get_contents("./templates/partialFormConnexion.html");
-  // }
 }

@@ -23,13 +23,13 @@ $config = [
 // ];
 
 // show errors in debug mode
-if ($config["debug"]){
-  error_reporting(E_ALL | E_STRICT);
-  ini_set('display_errors',1);
+if ( $config["debug"] ){
+  error_reporting( E_ALL | E_STRICT );
+  ini_set( 'display_errors', 1 );
 }
 
 //initialize secure process
-$safeData = new Security([
+$safeData = new Security( [
   "uri" => $config["path"],
   "post" =>[
     "contenu"             => FILTER_SANITIZE_FULL_SPECIAL_CHARS,
@@ -57,20 +57,20 @@ $safeData = new Security([
     "mdp"                 => FILTER_SANITIZE_STRING,
     "connexion"           => FILTER_SANITIZE_STRING,
   ]
-]);
+] );
 
 //define requested uri
 $uri = $safeData->uri;
 
 //define main route
-switch ($uri[0]){
+switch ( $uri[0] ){
   case "admin" : 
     require_once "controller/back.php";
-    $page = new Back($uri);
+    $page = new Back( $uri );
     break;
   default:
     require_once "controller/front.php";
-    $page = new Front($uri);
+    $page = new Front( $uri );
     break;
 }
 

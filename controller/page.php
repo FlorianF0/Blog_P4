@@ -8,7 +8,7 @@ class Page
   public $specialHeader = null;
 
   protected function footer(){
-    return file_get_contents("./templates/partialFooter.html");
+    return file_get_contents( "./templates/partialFooter.html" );
   }
 
   protected function renderPage(){
@@ -22,6 +22,6 @@ class Page
   }
 
   protected function page404(){
-    $this->html = file_get_contents("./templates/partialError404.html");
+    $this->html = file_get_contents( "./templates/partialError404.html" );
   }
 }

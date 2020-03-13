@@ -11,8 +11,8 @@ class User {
 	public function __construct() {
     global $safeData;
 
-    if ($safeData->post['connexion'] !== null){
-      $this->connexion($safeData->post['identifiant'],$safeData->post['mdp']);
+    if ( $safeData->post['connexion'] !== null ){
+      $this->connexion( $safeData->post['identifiant'] , $safeData->post['mdp'] );
     }
     else {
       $this->getSessionData();
@@ -20,15 +20,15 @@ class User {
 
 	}
 
-  private function connexion($identifiant, $mdp){
+  private function connexion( $identifiant , $mdp ){
     global $safeData;
 
-    $mdp = $safeData->encode($mdp);
+    $mdp = $safeData->encode( $mdp );
     
     $model = new UserModel([
-      "check" => compact("identifiant", "mdp")
+      "check" => compact( "identifiant" , "mdp" )
     ]);
-    if ($model->donneesRead !== false) {
+    if ( $model->donneesRead !== false ) {
       $this->pseudo = $model->donneesRead["pseudo"];
       $this->email  = $model->donneesRead["email"];
       $this->saveSession();
@@ -37,7 +37,7 @@ class User {
 
   private function getSessionData(){
     //on regarde si on a des données en session
-    if (empty($_SESSION["pseudo"] AND $_SESSION["email"]));
+    if ( empty( $_SESSION["pseudo"] AND $_SESSION["email"] ) );
 
     //on regarde si timestamp + durée session > maintenant
     if ($this->date + 2*3600 > date("F j, Y, g:i a"));

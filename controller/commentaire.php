@@ -22,23 +22,23 @@ class Commentaire
    * [__construct description]
    * @param Array $uri [description]
    */
-  public function __construct($source)
+  public function __construct( $source )
   {
     // on récupère les donnees de la bdd, et ont les hydrates
-    $this->data = new CommentaireModel($source);
+    $this->data = new CommentaireModel( $source );
     $this->data = $this->data->donneesRead;
-    $this->hydrate($this->data);
+    $this->hydrate( $this->data );
     
-    if(isset($source["id"])) $this->idChapitre = $source["id"];
+    if( isset($source["id"] ) ) $this->idChapitre = $source[ "id" ];
         
   }
 
-  public function hydrate($donnees)
+  public function hydrate( $donnees )
   {
-    if (!$donnees) return;
-    if (!isset($donnees[0])) 
+    if ( !$donnees ) return;
+    if ( !isset( $donnees[0] ) ) 
     {
-      foreach ($donnees as $key => $value) {
+      foreach ( $donnees as $key => $value ) {
         $this->$key = $value;
       }
       $donnees = null;
@@ -51,22 +51,22 @@ class Commentaire
 
     // on crée une boucle pour connaitre l'etat du commentaire ds la bdd, puis on lui associe les boutons de son état
     foreach ($this->data as $key => $value) {
-      $this->data[$key]["{{ idChapitre }}"]  = $this->idChapitre;
+      $this->data[ $key ][ "{{ idChapitre }}" ] = $this->idChapitre;
 
-      if($value["{{ etat }}"] === "0")  {
-        $this->data[$key]["{{ buttons }}"]  = "";
+      if ( $value[ "{{ etat }}" ] === "0" ) {
+        $this->data[$key]["{{ buttons }}"]      = "";
       }  
-      if($value["{{ etat }}"] === "1") {
-        $this->data[$key]["{{ buttons }}"]  = $this->bouttonFormulaire("Signaler");
+      if ( $value[ "{{ etat }}" ] === "1" ) {
+        $this->data[$key]["{{ buttons }}"]      = $this->bouttonFormulaire( "Signaler" );
       }
-      if($value["{{ etat }}"] === "2") {
-        $this->data[$key]["{{ buttons }}"]  = file_get_contents("./templates/reportedAck.html");
+      if ( $value[ "{{ etat }}" ] === "2" ) {
+        $this->data[ $key ][ "{{ buttons }}" ]  = file_get_contents( "./templates/reportedAck.html" );
       }
-      if($value["{{ etat }}"] === "3") {
-        $this->data[$key]["{{ buttons }}"]  = "";
+      if ( $value[ "{{ etat }}" ] === "3" ) {
+        $this->data[ $key ][ "{{ buttons }}" ]  = "";
       }
     }
-    return $this->finaliseAfficheCommentaire($this->data);
+    return $this->finaliseAfficheCommentaire( $this->data );
   }
 
 
@@ -74,22 +74,22 @@ class Commentaire
     
     // on crée une boucle pour connaitre l'etat du commentaire ds la bdd, puis on lui associe les boutons de son état
 
-    foreach ($this->data as $key => $value) {
-      $this->data[$key]["{{ idChapitre }}"]  = $this->idChapitre;
+    foreach ( $this->data as $key => $value ) {
+      $this->data[ $key ][ "{{ idChapitre }}" ]  = $this->idChapitre;
 
-      if($value["{{ etat }}"] === "0" || $value["{{ etat }}"] === "2") {
-        $this->data[$key]["{{ buttons }}"]  = $this->bouttonFormulaire("Valider");
-        $this->data[$key]["{{ buttons }}"] .= $this->bouttonFormulaire("Supprimer");
+      if ( $value["{{ etat }}"] === "0" || $value["{{ etat }}"] === "2" ) {
+        $this->data[ $key ][ "{{ buttons }}" ]  = $this->bouttonFormulaire( "Valider" );
+        $this->data[ $key ][ "{{ buttons }}" ] .= $this->bouttonFormulaire( "Supprimer" );
       }
-      if($value["{{ etat }}"] === "1" || $value["{{ etat }}"] === "3") {
-        $this->data[$key]["{{ buttons }}"]  = "";
+      if ( $value[ "{{ etat }}" ] === "1" || $value[ "{{ etat }}" ] === "3" ) {
+        $this->data[ $key ][ "{{ buttons }}" ]  = "";
       }
     }
-    return $this->finaliseAfficheCommentaire($this->data);
+    return $this->finaliseAfficheCommentaire( $this->data );
   }
 
 
-  private function bouttonFormulaire($texte){
+  private function bouttonFormulaire( $texte ){
     return new View(
       [
         "{{ texte }}" => $texte,
@@ -98,9 +98,9 @@ class Commentaire
     );
   }
   
-  private function finaliseAfficheCommentaire($data){
+  private function finaliseAfficheCommentaire( $data ){
 
-    if(empty($this->data))  $partialListeCommentaire = "Aucun commentaire";
+    if ( empty( $this->data ) )  $partialListeCommentaire = "Aucun commentaire";
 
     else $partialListeCommentaire = new View(
       $data,
