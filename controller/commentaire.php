@@ -4,10 +4,20 @@ require_once "model/commentaireModel.php";
 require_once "view/view.php";
 
 /**
- * 
+ * Génère les commentaires lié au chapitre.
  */
 class Commentaire
 {
+
+/**
+  * @var array
+  * @var int
+  * @var int
+  * @var string
+  * @var string
+  * @var string
+  * @var int
+  */
 
   public  $data;
   public  $id = null;
@@ -19,8 +29,8 @@ class Commentaire
 
 
   /**
-   * [__construct description]
-   * @param Array $uri [description]
+   * Récupère les commetnaire d'un chapitre grâce à l'id de ce dernier 
+   * @param int $source :
    */
   public function __construct( $source )
   {
@@ -33,6 +43,10 @@ class Commentaire
         
   }
 
+  /**
+   * @param array $donnees 
+   *
+   */
   public function hydrate( $donnees )
   {
     if ( !$donnees ) return;
@@ -45,7 +59,11 @@ class Commentaire
     }
   }
 
-
+  /**
+   *  Affiche les boutons pour signaler le commentaire (front)
+   * @return string  
+   *
+   */
   public function afficheCommentaires(){
 
 
@@ -69,7 +87,11 @@ class Commentaire
     return $this->finaliseAfficheCommentaire( $this->data );
   }
 
-
+  /**
+   * Affiche les boutons pour gérer le commentaire (back)
+   * @return string  
+   *
+   */
   public function afficheCommentairesBack(){
     
     // on crée une boucle pour connaitre l'etat du commentaire ds la bdd, puis on lui associe les boutons de son état
@@ -88,7 +110,12 @@ class Commentaire
     return $this->finaliseAfficheCommentaire( $this->data );
   }
 
-
+ /**
+   * Définie le texte du bouton
+   * @param string  
+   *
+   * @return string 
+   */
   private function bouttonFormulaire( $texte ){
     return new View(
       [
@@ -98,6 +125,12 @@ class Commentaire
     );
   }
   
+ /**
+   * Affiche le commentaire final
+   * @param array $data  
+   *
+   * @return array
+   */
   private function finaliseAfficheCommentaire( $data ){
 
     if ( empty( $this->data ) )  $partialListeCommentaire = "Aucun commentaire";

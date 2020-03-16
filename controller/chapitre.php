@@ -4,10 +4,23 @@ require_once "model/chapitreModel.php";
 require_once "view/view.php";
 
 /**
- * 
+ * Class Chapitre
+ *
+ * Permet de générer le contenue lié au chapitre : liste des chapitre / chapitre / CRUD 
  */
 class Chapitre
 {
+
+/** 
+  * @var string
+  * @var string
+  * @var array
+  * @var string
+  * @var int
+  * @var string
+  * @var string
+  * @var string
+  */
 
   public  $auteur;
   public  $contenu;
@@ -23,8 +36,8 @@ class Chapitre
 
 
   /**
-   * [__construct description]
-   * @param Array $uri [description]
+   * []
+   * @param Array $uri 
    */
   public function __construct( $source )
   {
@@ -43,6 +56,10 @@ class Chapitre
     $this->hydrate( $this->data );
   }
 
+   /**
+   * 
+   * @param Array $donnees : donnees des cahpitres récupéré sur la bdd
+   */
   public function hydrate( $donnees ){
 
     if ( !$donnees ) return;
@@ -55,7 +72,10 @@ class Chapitre
     }
   }
 
-
+ /**
+   * 
+   * @return string $html : contenu de la page chapitre front
+   */
   public function afficheContenueChapitre(){
     
     // on regarde si la date de Modif est nul, si elle est nul on met dateAjout, sinon on met DateModif
@@ -82,6 +102,10 @@ class Chapitre
     );
   }
 
+ /**
+   * 
+   * @return string $html : contenu de la page chapitre back
+   */
   public function afficheContenueChapitreBack(){
     
     // on regarde si la date de Modif est nul, si elle est nul on met dateAjout, sinon on met DateModif
@@ -110,6 +134,10 @@ class Chapitre
     );
   }
 
+   /**
+   * @param array $infos : le nbr d'article à afficher sur la page d'acceuil ($depart), et à partir de nbr que l'on veux ($start)
+   * @return string $html : contenu de la page
+   */
   public function afficheListeChapitre( $infos )
   {
     global $uri;
@@ -123,6 +151,10 @@ class Chapitre
     );
   } 
 
+ /**
+   * 
+   * @return string $html : contenu de la page front
+   */
   public function afficheEditChapitre() {
 
     return new view ([

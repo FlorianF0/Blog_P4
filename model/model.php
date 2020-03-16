@@ -1,14 +1,22 @@
 <?php 
 
-
-
+/**
+* Class Model
+*
+* Connexion à la bdd (PDO)
+*/
 class Model 
 {
-
+  /**
+  * @var PDO
+  * @var array
+  */
 	protected $bdd;
   public $donneesRead;
 
-
+  /**
+  *
+  */
 	public function __construct()
 	{
   
@@ -24,7 +32,10 @@ class Model
         die( 'Erreur : ' . $e->getMessage() );
     } 
 	}
-
+  /**
+  * @param string $sql
+  * @param boolean $all
+  */
   protected function query( $sql , $all=false ){
     $reponse = $this->bdd->query( $sql );
     
@@ -34,6 +45,10 @@ class Model
     else $this->donneesRead = $reponse->fetch();
   }
 
+  /**
+  * @param string $sql
+  * @param array $data
+  */
   protected function prepare( $sql , $data = null ) {
     $req = $this->bdd->prepare( $sql );
     $req->execute( $data );

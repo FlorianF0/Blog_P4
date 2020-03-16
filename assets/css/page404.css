@@ -1,19 +1,9 @@
 
-
 .error404 {
-  
-  position: absolute;
-  margin: 0 auto;
-  width: 500px;
-  height: 500px;
-  border: 1px #aaa solid; 
   text-align: center;
-  display: table-cell;
-  vertical-align: middle;
 }
 
-.error404 img {
-	
+.error404 img {	
 	width: 500px;
 	height: 500px;
 }

@@ -2,12 +2,27 @@
 
 require_once "model/userModel.php";
 
+/**
+* Class User
+*
+* Gère la connexion à l'admin et sécurise les pages admin
+*/
 class User {
+
+  /**
+  * @var string
+  * @var string
+  * @var string
+  */
 
   public $pseudo;
   public $email;
   public $date;
 	
+  /**
+   * 
+   *  
+   */
 	public function __construct() {
     global $safeData;
 
@@ -20,6 +35,11 @@ class User {
 
 	}
 
+ /**
+   * @param string $identifiant
+   * @param string $mdp
+   *  
+   */
   private function connexion( $identifiant , $mdp ){
     global $safeData;
 
@@ -36,11 +56,12 @@ class User {
   }
 
   private function getSessionData(){
-    //on regarde si on a des données en session
-    if ( empty( $_SESSION["pseudo"] AND $_SESSION["email"] ) );
+    //on regarde si on a des données en session 
+    if ( isset( $_SESSION["pseudo"] ) AND isset( $_SESSION["email"] ) );
 
     //on regarde si timestamp + durée session > maintenant
     if ($this->date + 2*3600 > date("F j, Y, g:i a"));
+    
   }
 
   private function saveSession(){

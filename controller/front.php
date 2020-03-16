@@ -6,9 +6,20 @@ require_once "controller/page.php";
 require_once "controller/user.php";
 require_once "view/view.php";
 
-
+/**
+ * Class Front
+ *
+ * Permet de générer le contenu lié au front
+ */
 class Front extends Page
 {
+
+  /**
+  * @var int
+  * @var int
+  * @var int
+  * @var array
+  */
 
   public $id;
   public $id_chapitre;
@@ -16,8 +27,9 @@ class Front extends Page
   private $uri;
 
   /**
-   * [__construct description]
-   * @param Array $uri [description]
+   * Permet d'afficher les pages en fonction de l'uri 
+   * @param Array $uri : barre d'adresse
+   * @param $todo : fonction associé au front
    */
   public function __construct( $uri )
   {
@@ -43,6 +55,11 @@ class Front extends Page
     $this->afficheChapitre( $this->uri[1] );
   }
 
+  /**
+   * @param string $slug
+   * 
+   * @return string $html : contenu de la page 
+   */
 
   private function afficheChapitre( $slug )
   {
@@ -69,7 +86,10 @@ class Front extends Page
     );
   }
 
-  
+  /**
+   * @param int $depart : nbr auquel on le veut démarer la liste des chapitres
+   *
+   */
 
   public function afficheListeChapitre( $depart )
   {

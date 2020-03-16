@@ -7,16 +7,30 @@ require_once "controller/user.php";
 require_once "view/view.php";
 
 
+/**
+ * Class Back
+ *
+ * Permet de générer le contenu lié au back
+ */
 class Back extends Page
-{
+{ 
+
+/**
+  * @var int : Id du chapitre
+  * @var int : Id du chapitre
+  * @var int
+  */
+
 	public $id;
 	public $id_chapitre;
 	private $nombreParPage = 5;
 
   /**
-   * [__construct description]
-   * @param Array $uri [description]
+   * Permet d'afficher les pages en fonction de l'uri
+   * @param Array $uri : barre d'adresse 
+   * @param $todo : fonction associé au front
    */
+
   public function __construct( $uri )
   {
     $this->uri = $uri;
@@ -26,9 +40,12 @@ class Back extends Page
     if ( $todo === "" ) $todo = "accueil";
 
     //on vérifie l'authentification
+    // $_SESSION["pseudo"] = null;
+
     $user = new User();
-    if ( $user->pseudo === null ) $todo = "login";
-    // die(var_dump($user->pseudo));
+    // $_SESSION["pseudo"] = $user->pseudo;
+    // die(var_dump($_SESSION["pseudo"]));
+    if ( $_SESSION["pseudo"] === null ) $todo = "login";
 
     if ( !method_exists( $this , $todo ) ) $todo = "page404";
 
@@ -58,6 +75,11 @@ class Back extends Page
     $this->titre = "Merci de vous identifier";
   }
 
+ /**
+   * @param string $slug
+   * 
+   * @return string $html : contenu de la page 
+   */
   private function afficheChapitreBack( $slug )
   {
     // on regarde si le bouton ajout/supprimer est activé et on redirige vers une page (message où l'on indique que l'action à bien était faites)
@@ -87,14 +109,16 @@ class Back extends Page
         "{{ partialContenueChapitre }}"   => $monChapitre->afficheContenueChapitreBack(),
         "{{ partialCommentaire }}"        => $monCommentaire->afficheCommentairesBack(),
         "{{ partialFooter }}"             => $this->footer(),
-
-        // "{{ partialFormConnexion }}" => $monChapitre->afficheFormConnexion()
       ],
       "partialChapitre"
     );
 
   }
 
+  /**
+   * @param int $depart : nbr auquel on le veut démarer la liste des chapitres
+   *
+   */
   public function afficheListeChapitreBack( $depart )
   {
 
@@ -111,7 +135,10 @@ class Back extends Page
     );
     $this->titre="Accueil";
   }
-  
+  /**
+   * @return string $html
+   *
+   */
   public function afficheNewChapitre()
   {
     $monNouveauChapitre = new Chapitre("");
@@ -126,7 +153,13 @@ class Back extends Page
     $this->titre = "Ajouter un chapitre";
     $this->html  = file_get_contents( "./templates/back/partialCreeChapitre.html" );
   }
-  
+
+    /**
+   * @param string $slug
+   *
+   * @param string $html 
+   *
+   */
   public function editChapitreBack( $slug )
   {
     
@@ -134,7 +167,7 @@ class Back extends Page
 
     global $safeData;
 
-    if ($safeData->post["Editer_chapitre"]) {
+    if ( $safeData->post["Editer_chapitre"] ) {
         $this->html = $monChapitre->html;
         return;
     }

@@ -8,6 +8,10 @@ require_once "model/model.php";
 class CommentaireModel extends Model
 {
   
+   /**
+   * @param int $argument 
+   * 
+   */
   function __construct($argument)
   {
     parent::__construct();
@@ -43,20 +47,30 @@ class CommentaireModel extends Model
 
   }
 
-
+ /**
+   * @param string|int $argument 
+   * 
+   */
   private function getDataFromChapitreId( $id ){
     $sql = "SELECT id AS '{{ id }}', etat AS '{{ etat }}', id_chapitre AS '{{ idChapitre }}', auteurCommentaire AS '{{ auteurCommentaire }}', contenuCommentaire AS '{{ contenuCommentaire }}', DATE_FORMAT(datePublication, '%d %M %Y') AS '{{ datePublication }}', etat AS '{{ etat }}' FROM `commentaires` WHERE id_chapitre = '$id'";
     $this->query( $sql , true );
 
   }
 
-
+ /**
+   * @param string|int $argument 
+   * 
+   */
   private function deleteComment( $id ){
 
    $sql = "DELETE FROM `commentaires` WHERE  id = '$id'";
    $this->prepare( $sql );
   }
-
+  
+ /**
+   * @param int $id
+   * @param int $etat
+   */
   private function updateState( $id , $etat ){
     //on récupère l'état du commentaire 
     // on incrémente l'état
@@ -64,20 +78,16 @@ class CommentaireModel extends Model
     // on fait une requete pour mettre à jour l'état
     $sql = "UPDATE `commentaires` SET etat = :etat + '1' WHERE  id = :id";
     $this->prepare( $sql , compact( "etat" , "id" ) );
-
-
   }
 
+ /**
+   * @param string $auteurCommentaire 
+   * @param string $contenuCommentaire
+   * @param int $idChapitre
+   */
   private function createComment( $auteurCommentaire , $contenuCommentaire , $idChapitre ) {
     $sql = "INSERT INTO `commentaires` (auteurCommentaire, contenuCommentaire, datePublication, id_chapitre) VALUES (:auteurCommentaire, :contenuCommentaire, NOW(), :idChapitre)";
 
     $this->prepare( $sql , compact( "auteurCommentaire" , "contenuCommentaire" , "idChapitre" ) ); 
-
-
   }
-
-
-
-
-
 }

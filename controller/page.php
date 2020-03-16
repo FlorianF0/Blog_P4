@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Class Page
+ *
+ * Permet de générer le contenu final front et back
+ */
 class Page
 {
 
@@ -11,6 +16,10 @@ class Page
     return file_get_contents( "./templates/partialFooter.html" );
   }
 
+    /**
+   * @return string $html
+   *
+   */
   protected function renderPage(){
     $this->html  = new View(
       [
