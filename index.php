@@ -2,6 +2,8 @@
 require_once "controller/security.php";
 require_once "controller/page.php";
 
+ini_set('session.gc_maxlifetime', 3600);
+session_set_cookie_params(3600);
 session_start();
 
 //config florian
@@ -14,13 +16,13 @@ $config = [
 ];
 
 // config Lionel
-// $config = [
-//   "baseDeDonne" => "florian-p4",
-//   "userBDD"     => "root",
-//   "passwordBDD" => "root",
-//   "debug"       => true,
-//   "path"        => "",
-// ];
+$config = [
+  "baseDeDonne" => "florian-p4",
+  "userBDD"     => "root",
+  "passwordBDD" => "root",
+  "debug"       => true,
+  "path"        => "",
+];
 
 // show errors in debug mode
 if ( $config["debug"] ){

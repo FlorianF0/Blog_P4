@@ -1,4 +1,8 @@
-
+body.fullscreen {
+	display: flex;
+	align-items: center;
+	height: 100vh;
+}
 
 .formConnexion {
 	padding: 3rem;

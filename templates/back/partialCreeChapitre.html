@@ -10,7 +10,7 @@
             <form  method="POST">
                 <div class="form-group">
                     <label for="titre" class="control-label">Titre</label>
-                    <input type="text" name="titre" class="form-control" id="titre" placeholder="Titre">
+                    <input type="text" name="titre" class="form-control" id="titre" placeholder="Titre" oninput="generateSlug(this.value)">
                 </div>
                 <div class="form-group">
                     <label for="resume" class="control-label">Résumé</label>
@@ -19,7 +19,7 @@
                 <div class="form-group">
                     <label for="slug" class="control-label">Slug</label>
                     <script type="text/javascript">
-                        function generateSlug(title,target){
+                        function generateSlug(title){
                             const slug = title.toLowerCase()
                                 .replace(/\s+/g, '-')           // Replace spaces with -
                                 .replace(/[àáâãäå]/g,"a")
@@ -37,10 +37,9 @@
                                 .replace(/\-\-+/g, '-')         // Replace multiple - with single -
                                 .replace(/^-+/, '')             // Trim - from start of text
                                 .replace(/-+$/, '')            // Trim - from end of text
-                            target.value = slug;
+                            document.getElementById("slug").value = slug;
                         }
                     </script>
-                    <slugify onclick="event.stopPropagation();generateSlug(document.getElementById('titre').value, document.getElementById('slug'))"><button>Générer le slug</button></slugify>
                     <textarea name="slug" class="form-control" maxlength="255" id="slug" placeholder="Slug"></textarea> 
                 </div>
                 <div class="form-group">

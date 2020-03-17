@@ -57,10 +57,14 @@ class User {
 
   private function getSessionData(){
     //on regarde si on a des données en session 
-    if ( isset( $_SESSION["pseudo"] ) AND isset( $_SESSION["email"] ) );
+    if ( isset( $_SESSION["pseudo"] ) AND isset( $_SESSION["email"] ) ){
+      $this->pseudo = $_SESSION["pseudo"];
+      $this->email  = $_SESSION["email"];
+
+    }
 
     //on regarde si timestamp + durée session > maintenant
-    if ($this->date + 2*3600 > date("F j, Y, g:i a"));
+    // if ($this->date + 2*3600 > date("F j, Y, g:i a"));
     
   }
 

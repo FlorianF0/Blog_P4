@@ -20,20 +20,22 @@ class Back extends Page
   * @var int : Id du chapitre
   * @var int
   */
-
-	public $id;
-	public $id_chapitre;
+	public  $id;
+	public  $id_chapitre;
 	private $nombreParPage = 5;
 
   /**
    * Permet d'afficher les pages en fonction de l'uri
    * @param Array $uri : barre d'adresse 
-   * @param $todo : fonction associé au front
+   * @return Back 
    */
-
   public function __construct( $uri )
   {
     $this->uri = $uri;
+
+    /**
+   * @var $todo : fonction associé au front
+     */
 
     if ( isset( $uri[1] ) ) $todo = $uri[1];
     else $todo = "accueil";
@@ -45,7 +47,7 @@ class Back extends Page
     $user = new User();
     // $_SESSION["pseudo"] = $user->pseudo;
     // die(var_dump($_SESSION["pseudo"]));
-    if ( $_SESSION["pseudo"] === null ) $todo = "login";
+    if ( $user->pseudo === null ) $todo = "login";
 
     if ( !method_exists( $this , $todo ) ) $todo = "page404";
 
@@ -66,6 +68,10 @@ class Back extends Page
     $this->afficheNewChapitre();
   }
 
+  /**
+   * [editChapitre description]
+   * @return void
+   */
   private function editChapitre() {
     $this->editChapitreBack( $this->uri[2] );
   }
@@ -77,7 +83,6 @@ class Back extends Page
 
  /**
    * @param string $slug
-   * 
    * @return string $html : contenu de la page 
    */
   private function afficheChapitreBack( $slug )
