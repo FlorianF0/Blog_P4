@@ -11,17 +11,6 @@ require_once "view/view.php";
 class Chapitre
 {
 
-/** 
-  * @var string
-  * @var string
-  * @var array
-  * @var string
-  * @var int
-  * @var string
-  * @var string
-  * @var string
-  */
-
   public  $auteur;
   public  $contenu;
   public  $data;
@@ -38,6 +27,8 @@ class Chapitre
   /**
    * []
    * @param Array $uri 
+   *
+   * @return string $html
    */
   public function __construct( $source )
   {
@@ -57,8 +48,9 @@ class Chapitre
   }
 
    /**
-   * 
    * @param Array $donnees : donnees des cahpitres récupéré sur la bdd
+   *
+   * @return array $donnnees
    */
   public function hydrate( $donnees ){
 
@@ -153,7 +145,7 @@ class Chapitre
 
  /**
    * 
-   * @return string $html : contenu de la page front
+   * @return string $html 
    */
   public function afficheEditChapitre() {
 
@@ -168,15 +160,27 @@ class Chapitre
     );
   }
 
+   /**
+   * 
+   * @return string $html 
+   */
   private function messageDeleteChapitre(){
     $this->html  = file_get_contents( "./templates/back/messageDeleteChapitre.html" );
     $this->titre = 'Chapitre-delete';
   }
 
+   /**
+   * 
+   * @return string $html 
+   */
   private function messageAjoutChapitre(){
     $this->html = file_get_contents( "./templates/back/messageAjoutChapitre.html" );
   }
 
+   /**
+   * 
+   * @return string $html 
+   */
   private function messageEditChapitre(){
     $this->html = file_get_contents( "./templates/back/messageEditChapitre.html" );
   }

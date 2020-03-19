@@ -9,11 +9,6 @@ require_once "model/userModel.php";
 */
 class User {
 
-  /**
-  * @var string
-  * @var string
-  * @var string
-  */
 
   public $pseudo;
   public $email;
@@ -21,7 +16,7 @@ class User {
 	
   /**
    * 
-   *  
+   *  @return void
    */
 	public function __construct() {
     global $safeData;
@@ -55,19 +50,23 @@ class User {
     }
   }
 
+ /**
+  *
+  * @return void
+  */
   private function getSessionData(){
     //on regarde si on a des données en session 
     if ( isset( $_SESSION["pseudo"] ) AND isset( $_SESSION["email"] ) ){
       $this->pseudo = $_SESSION["pseudo"];
       $this->email  = $_SESSION["email"];
 
-    }
-
-    //on regarde si timestamp + durée session > maintenant
-    // if ($this->date + 2*3600 > date("F j, Y, g:i a"));
-    
+    }    
   }
-
+  
+ /**
+  *
+  * @return void
+  */
   private function saveSession(){
     //on enregistre les données en session ($this->pseudo,  $this->email)
     $_SESSION["pseudo"] = $this->pseudo;

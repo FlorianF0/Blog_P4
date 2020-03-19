@@ -11,6 +11,7 @@ class CommentaireModel extends Model
    /**
    * @param int $argument 
    * 
+   * @return void
    */
   function __construct($argument)
   {

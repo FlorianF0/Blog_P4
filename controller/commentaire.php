@@ -9,16 +9,6 @@ require_once "view/view.php";
 class Commentaire
 {
 
-/**
-  * @var array
-  * @var int
-  * @var int
-  * @var string
-  * @var string
-  * @var string
-  * @var int
-  */
-
   public  $data;
   public  $id = null;
   public  $etat;
@@ -31,6 +21,8 @@ class Commentaire
   /**
    * Récupère les commetnaire d'un chapitre grâce à l'id de ce dernier 
    * @param int $source :
+   * 
+   * @return void
    */
   public function __construct( $source )
   {
@@ -46,6 +38,7 @@ class Commentaire
   /**
    * @param array $donnees 
    *
+   * @return array $donnees
    */
   public function hydrate( $donnees )
   {

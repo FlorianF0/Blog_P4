@@ -10,6 +10,7 @@ class ChapitreModel extends Model
  /**
    * @param string|int $argument 
    * 
+   * @return void
    */
   function __construct( $argument )
   {

@@ -16,13 +16,13 @@ $config = [
 ];
 
 // config Lionel
-$config = [
-  "baseDeDonne" => "florian-p4",
-  "userBDD"     => "root",
-  "passwordBDD" => "root",
-  "debug"       => true,
-  "path"        => "",
-];
+// $config = [
+//   "baseDeDonne" => "florian-p4",
+//   "userBDD"     => "root",
+//   "passwordBDD" => "root",
+//   "debug"       => true,
+//   "path"        => "",
+// ];
 
 // show errors in debug mode
 if ( $config["debug"] ){

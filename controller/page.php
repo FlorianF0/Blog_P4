@@ -12,11 +12,15 @@ class Page
   public $titre;
   public $specialHeader = null;
 
+  /**
+   * @return string $html
+   *
+   */
   protected function footer(){
     return file_get_contents( "./templates/partialFooter.html" );
   }
 
-    /**
+  /**
    * @return string $html
    *
    */
@@ -30,6 +34,10 @@ class Page
     );
   }
 
+ /**
+   * @return string $html
+   *
+   */
   protected function page404(){
     $this->html = file_get_contents( "./templates/partialError404.html" );
   }

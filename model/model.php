@@ -7,15 +7,12 @@
 */
 class Model 
 {
-  /**
-  * @var PDO
-  * @var array
-  */
+
 	protected $bdd;
   public $donneesRead;
 
   /**
-  *
+  * @return void
   */
 	public function __construct()
 	{

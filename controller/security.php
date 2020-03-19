@@ -7,11 +7,6 @@
  */
 class Security
 {
-  /**
-  * @var string
-  * @var string
-  * @var string
-  */
 
   public $get;
   public $post;
@@ -19,8 +14,9 @@ class Security
   
     /**
    * Sécurise les données en POST, GET, URI. 
-   * @param string $argument 
+   * @param string $argument
    *
+   * @return string $get|$post|$uri
    */
   public function __construct( $argument )
   {
@@ -34,6 +30,7 @@ class Security
    * Récupère l'uri, le nettoie et l'intègre ds un tableau. 
    * @param string $path 
    *
+   * @return array $uri
    */
   private function sanitizeUri( $path ){
     $this->uri = filter_input( INPUT_SERVER , 'REQUEST_URI' , FILTER_SANITIZE_URL );
@@ -49,6 +46,7 @@ class Security
    * Encode les mdp. 
    * @param string $str 
    *
+   * @return string $str
    */
   public function encode( $str ){
     return hash( 'sha256' , $str );

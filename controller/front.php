@@ -14,13 +14,6 @@ require_once "view/view.php";
 class Front extends Page
 {
 
-  /**
-  * @var int
-  * @var int
-  * @var int
-  * @var array
-  */
-
   public $id;
   public $id_chapitre;
   private $nombreParPage = 5;
@@ -29,11 +22,11 @@ class Front extends Page
   /**
    * Permet d'afficher les pages en fonction de l'uri 
    * @param Array $uri : barre d'adresse
-   * @param $todo : fonction associé au front
+   * 
+   * @return Front
    */
   public function __construct( $uri )
   {
-
     $this->uri = $uri;
 
     if ( isset( $uri[0] ) ) $todo = $uri[0];
@@ -46,11 +39,18 @@ class Front extends Page
     $this->renderPage();
   }
 
-
+  /**
+   * 
+   * @return void
+   */
   private function accueil(){
     $this->afficheListeChapitre(0);
   }
 
+ /**
+   * 
+   * @return void
+   */
   private function chapitre(){
     $this->afficheChapitre( $this->uri[1] );
   }
@@ -89,6 +89,7 @@ class Front extends Page
   /**
    * @param int $depart : nbr auquel on le veut démarer la liste des chapitres
    *
+   * @return string $html
    */
 
   public function afficheListeChapitre( $depart )

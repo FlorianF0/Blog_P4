@@ -15,11 +15,6 @@ require_once "view/view.php";
 class Back extends Page
 { 
 
-/**
-  * @var int : Id du chapitre
-  * @var int : Id du chapitre
-  * @var int
-  */
 	public  $id;
 	public  $id_chapitre;
 	private $nombreParPage = 5;
@@ -56,28 +51,43 @@ class Back extends Page
     $this->renderPage();    
   }
 
+  /**
+   *
+   * @return void
+   */
   private function accueil(){
     $this->afficheListeChapitreBack(0);
   }
 
+  /**
+   *
+   * @return void
+   */
   private function chapitre(){
     $this->afficheChapitreBack( $this->uri[2] );
   }
 
+  /**
+   *
+   * @return void
+   */
   private function newChapitre() {
     $this->afficheNewChapitre();
   }
 
   /**
-   * [editChapitre description]
+   *
    * @return void
    */
   private function editChapitre() {
     $this->editChapitreBack( $this->uri[2] );
   }
-
+  /**
+   *
+   * @return string $html
+   */
   private function login(){
-    $this->html = file_get_contents( "./templates/partialFormConnexion.html" );
+    $this->html = file_get_contents( "./templates/back/partialFormConnexion.html" );
     $this->titre = "Merci de vous identifier";
   }
 
@@ -123,6 +133,7 @@ class Back extends Page
   /**
    * @param int $depart : nbr auquel on le veut démarer la liste des chapitres
    *
+   * @return string $html
    */
   public function afficheListeChapitreBack( $depart )
   {
