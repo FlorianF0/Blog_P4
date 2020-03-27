@@ -2247,7 +2247,7 @@ input, select, textarea {
 		}
 
 		.icon:before {
-			line-height: solid;
+			/*line-height: solid;*/
 		}
 
 		.icon.solid:before {
