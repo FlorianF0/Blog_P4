@@ -76,6 +76,5 @@ switch ( $uri[0] ){
     break;
 }
 
-// if ($page->specialHeader !== null) header($specialHeader);
 
 echo $page->html;
