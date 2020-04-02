@@ -13,6 +13,7 @@ class User {
   public $pseudo;
   public $email;
   public $date;
+  public $messageErreurConnexion;
 	
   /**
    * 
@@ -46,7 +47,11 @@ class User {
     if ( $model->donneesRead !== false ) {
       $this->pseudo = $model->donneesRead["pseudo"];
       $this->email  = $model->donneesRead["email"];
+      // $this->messageErreurConnexion = "";
       $this->saveSession();
+    }
+    else{
+      $this->messageErreurConnexion = "Identifiant ou mot de passe éronné";
     }
   }
 

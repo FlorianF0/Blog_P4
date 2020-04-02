@@ -18,6 +18,7 @@ class Back extends Page
 	public  $id;
 	public  $id_chapitre;
 	private $nombreParPage = 5;
+  public  $messageErreurConnexion;
 
   /**
    * Permet d'afficher les pages en fonction de l'uri
@@ -37,11 +38,10 @@ class Back extends Page
     if ( $todo === "" ) $todo = "accueil";
 
     //on vérifie l'authentification
-    // $_SESSION["pseudo"] = null;
 
     $user = new User();
-    // $_SESSION["pseudo"] = $user->pseudo;
-    // die(var_dump($_SESSION["pseudo"]));
+    $this->messageErreurConnexion = $user->messageErreurConnexion;
+
     if ( $user->pseudo === null ) $todo = "login";
 
     if ( !method_exists( $this , $todo ) ) $todo = "page404";
@@ -87,7 +87,14 @@ class Back extends Page
    * @return string $html
    */
   private function login(){
-    $this->html = file_get_contents( "./templates/back/partialFormConnexion.html" );
+    // $this->html = file_get_contents( "./templates/back/partialFormConnexion.html" );
+
+    $this->html = new View (
+      [
+        "{{ messageErreur }}" => $this->messageErreurConnexion 
+      ],
+      "back/partialFormConnexion"
+    );
     $this->titre = "Merci de vous identifier";
   }
 
