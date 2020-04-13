@@ -51,7 +51,7 @@ class User {
       $this->saveSession();
     }
     else{
-      $this->messageErreurConnexion = "Identifiant ou mot de passe erroné";
+      $this->messageErreurConnexion = "Identifiant ou mot de passe éronné";
     }
   }
 
